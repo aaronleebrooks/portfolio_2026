@@ -11,3 +11,22 @@ body,
 body {
   font-family: Tahoma, "Segoe UI", sans-serif;
 }
+
+@keyframes boot-slide {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(360%);
+  }
+}
+
+.boot-bar {
+  animation: boot-slide 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-bar {
+    animation: none;
+  }
+}
