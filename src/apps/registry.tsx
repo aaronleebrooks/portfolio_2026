@@ -1,57 +1,50 @@
-import type { ReactNode } from "react";
+import type { ComponentType } from "react";
+import { useTranslation, Trans } from "react-i18next";
 
 export interface AppDefinition {
   id: string;
-  title: string;
-  /** Short label shown under the desktop icon. */
-  iconLabel: string;
-  /** Emoji/glyph placeholder until real XP icon art lands. */
   glyph: string;
   defaultWidth: number;
   defaultHeight: number;
-  content: ReactNode;
+  Content: ComponentType;
 }
 
 function AboutContent() {
+  const { t } = useTranslation();
   return (
     <div className="space-y-2 text-sm leading-relaxed">
-      <p className="font-bold">Aaron Brooks — Full Stack Software Engineer</p>
-      <p>
-        8+ years building customer-facing EdTech at scale, specializing in
-        React, TypeScript, and Redux. This site is a Windows XP–themed
-        playground; poke around the desktop.
-      </p>
-      <p className="text-xs italic">
-        More apps (résumé viewer, projects, an AIM-style AI buddy) are on the
-        way.
-      </p>
+      <p className="font-bold">{t("apps.about.headline")}</p>
+      <p>{t("apps.about.body")}</p>
+      <p className="text-xs italic">{t("apps.about.footnote")}</p>
     </div>
   );
 }
 
 function ResumeContent() {
+  const { t } = useTranslation();
   return (
     <div className="space-y-2 text-sm leading-relaxed">
-      <p>A proper Adobe Acrobat–style résumé viewer is coming in a later
-        milestone.</p>
+      <p>{t("apps.resume.comingSoon")}</p>
       <p>
-        For now, find me on{" "}
-        <a
-          href="https://linkedin.com/in/aaronleebrooks"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          LinkedIn
-        </a>{" "}
-        and{" "}
-        <a
-          href="https://github.com/aaronleebrooks"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          GitHub
-        </a>
-        .
+        <Trans
+          i18nKey="apps.resume.links"
+          components={{
+            linkedin: (
+              <a
+                href="https://linkedin.com/in/aaronleebrooks"
+                target="_blank"
+                rel="noreferrer noopener"
+              />
+            ),
+            github: (
+              <a
+                href="https://github.com/aaronleebrooks"
+                target="_blank"
+                rel="noreferrer noopener"
+              />
+            ),
+          }}
+        />
       </p>
     </div>
   );
@@ -60,21 +53,17 @@ function ResumeContent() {
 export const APPS: AppDefinition[] = [
   {
     id: "about",
-    title: "About Me",
-    iconLabel: "About Me",
     glyph: "👤",
     defaultWidth: 380,
     defaultHeight: 240,
-    content: <AboutContent />,
+    Content: AboutContent,
   },
   {
     id: "resume",
-    title: "Résumé",
-    iconLabel: "Résumé",
     glyph: "📄",
     defaultWidth: 360,
     defaultHeight: 200,
-    content: <ResumeContent />,
+    Content: ResumeContent,
   },
 ];
 

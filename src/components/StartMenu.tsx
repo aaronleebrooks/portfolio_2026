@@ -1,13 +1,39 @@
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { APPS } from "../apps/registry";
+import { useAppLabels } from "../apps/useAppLabels";
 import { useOpenApp } from "../apps/useOpenApp";
 
 interface StartMenuProps {
   onClose: () => void;
 }
 
-export function StartMenu({ onClose }: StartMenuProps) {
+function StartMenuItem({ appId, onClose }: { appId: string; onClose: () => void }) {
   const openApp = useOpenApp();
+  const app = APPS.find((a) => a.id === appId);
+  const { title } = useAppLabels(appId);
+  if (!app) return null;
+
+  return (
+    <li>
+      <button
+        role="menuitem"
+        type="button"
+        className="flex w-full items-center gap-2 border-0 bg-transparent p-1 text-left hover:bg-blue-700 hover:text-white"
+        onClick={() => {
+          openApp(appId);
+          onClose();
+        }}
+      >
+        <span aria-hidden>{app.glyph}</span>
+        {title}
+      </button>
+    </li>
+  );
+}
+
+export function StartMenu({ onClose }: StartMenuProps) {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,7 +44,6 @@ export function StartMenu({ onClose }: StartMenuProps) {
       if (ref.current && !ref.current.contains(e.target as Node)) onClose();
     };
     document.addEventListener("keydown", onKey);
-    // Defer so the same click that opened the menu doesn't immediately close it.
     const id = window.setTimeout(
       () => document.addEventListener("pointerdown", onPointer),
       0
@@ -34,29 +59,16 @@ export function StartMenu({ onClose }: StartMenuProps) {
     <div
       ref={ref}
       role="menu"
-      aria-label="Start menu"
+      aria-label={t("startMenu.aria")}
       className="window absolute bottom-9 left-1 w-60"
     >
       <div className="title-bar">
-        <div className="title-bar-text">Aaron Brooks</div>
+        <div className="title-bar-text">{t("startMenu.userName")}</div>
       </div>
       <div className="window-body">
         <ul className="m-0 list-none p-0">
           {APPS.map((app) => (
-            <li key={app.id}>
-              <button
-                role="menuitem"
-                type="button"
-                className="flex w-full items-center gap-2 border-0 bg-transparent p-1 text-left hover:bg-blue-700 hover:text-white"
-                onClick={() => {
-                  openApp(app.id);
-                  onClose();
-                }}
-              >
-                <span aria-hidden>{app.glyph}</span>
-                {app.title}
-              </button>
-            </li>
+            <StartMenuItem key={app.id} appId={app.id} onClose={onClose} />
           ))}
           <li aria-hidden>
             <hr className="my-1" />
@@ -68,7 +80,7 @@ export function StartMenu({ onClose }: StartMenuProps) {
               disabled
               className="w-full p-1 text-left text-gray-500"
             >
-              Turn Off Computer…
+              {t("startMenu.shutDown")}
             </button>
           </li>
         </ul>

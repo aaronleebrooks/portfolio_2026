@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { openWindow } from "../features/windows/windowsSlice";
+import { setHashForApp } from "../routing/useHashDeepLink";
 import { useAppDispatch, useAppSelector } from "../store";
 import { getApp } from "./registry";
 
@@ -18,13 +19,13 @@ export function useOpenApp() {
       dispatch(
         openWindow({
           appId: app.id,
-          title: app.title,
           x: BASE_X + count * CASCADE_STEP,
           y: BASE_Y + count * CASCADE_STEP,
           width: app.defaultWidth,
           height: app.defaultHeight,
         })
       );
+      setHashForApp(appId);
     },
     [dispatch, count]
   );

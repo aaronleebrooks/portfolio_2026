@@ -1,10 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import {
+  MIN_WINDOW_HEIGHT,
+  MIN_WINDOW_WIDTH,
+} from "./windowConstants";
+
+export interface WindowBounds {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
 
 export interface WindowState {
   id: string;
   appId: string;
-  title: string;
   x: number;
   y: number;
   width: number;
@@ -12,6 +22,7 @@ export interface WindowState {
   zIndex: number;
   minimized: boolean;
   maximized: boolean;
+  restoreBounds: WindowBounds | null;
 }
 
 export interface WindowsState {
@@ -28,17 +39,12 @@ const initialState: WindowsState = {
 
 export interface OpenWindowPayload {
   appId: string;
-  title: string;
   x: number;
   y: number;
   width: number;
   height: number;
 }
 
-/**
- * The topmost, non-minimized window becomes focused. Returns null when every
- * window is minimized or none exist.
- */
 function topmostVisibleId(state: WindowsState): string | null {
   let best: WindowState | null = null;
   for (const w of state.windows) {
@@ -58,9 +64,8 @@ const windowsSlice = createSlice({
   name: "windows",
   initialState,
   reducers: {
-    // Single-instance per app for now: reopening an app focuses/restores it.
     openWindow(state, action: PayloadAction<OpenWindowPayload>) {
-      const { appId, title, x, y, width, height } = action.payload;
+      const { appId, x, y, width, height } = action.payload;
       const existing = state.windows.find((w) => w.id === appId);
       if (existing) {
         existing.minimized = false;
@@ -70,7 +75,6 @@ const windowsSlice = createSlice({
       const win: WindowState = {
         id: appId,
         appId,
-        title,
         x,
         y,
         width,
@@ -78,6 +82,7 @@ const windowsSlice = createSlice({
         zIndex: state.nextZIndex,
         minimized: false,
         maximized: false,
+        restoreBounds: null,
       };
       state.nextZIndex += 1;
       state.windows.push(win);
@@ -103,9 +108,19 @@ const windowsSlice = createSlice({
       action: PayloadAction<{ id: string; x: number; y: number }>
     ) {
       const win = state.windows.find((w) => w.id === action.payload.id);
-      if (!win) return;
+      if (!win || win.maximized) return;
       win.x = action.payload.x;
       win.y = action.payload.y;
+    },
+
+    resizeWindow(state, action: PayloadAction<WindowBounds & { id: string }>) {
+      const win = state.windows.find((w) => w.id === action.payload.id);
+      if (!win || win.maximized) return;
+      const { id: _id, x, y, width, height } = action.payload;
+      win.x = x;
+      win.y = y;
+      win.width = Math.max(MIN_WINDOW_WIDTH, width);
+      win.height = Math.max(MIN_WINDOW_HEIGHT, height);
     },
 
     minimizeWindow(state, action: PayloadAction<string>) {
@@ -120,7 +135,26 @@ const windowsSlice = createSlice({
     toggleMaximize(state, action: PayloadAction<string>) {
       const win = state.windows.find((w) => w.id === action.payload);
       if (!win) return;
-      win.maximized = !win.maximized;
+
+      if (win.maximized) {
+        win.maximized = false;
+        if (win.restoreBounds) {
+          win.x = win.restoreBounds.x;
+          win.y = win.restoreBounds.y;
+          win.width = win.restoreBounds.width;
+          win.height = win.restoreBounds.height;
+          win.restoreBounds = null;
+        }
+      } else {
+        win.restoreBounds = {
+          x: win.x,
+          y: win.y,
+          width: win.width,
+          height: win.height,
+        };
+        win.maximized = true;
+      }
+
       win.minimized = false;
       bringToFront(state, win);
     },
@@ -132,6 +166,7 @@ export const {
   closeWindow,
   focusWindow,
   moveWindow,
+  resizeWindow,
   minimizeWindow,
   toggleMaximize,
 } = windowsSlice.actions;

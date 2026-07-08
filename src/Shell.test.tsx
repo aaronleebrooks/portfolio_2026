@@ -20,6 +20,10 @@ async function boot(user: ReturnType<typeof userEvent.setup>) {
 }
 
 describe("Shell", () => {
+  afterEach(() => {
+    window.location.hash = "";
+  });
+
   it("boots into a desktop with app icons", async () => {
     const user = userEvent.setup();
     renderShell();
@@ -81,5 +85,27 @@ describe("Shell", () => {
     await user.click(within(menu).getByRole("menuitem", { name: /résumé/i }));
 
     expect(screen.getByRole("dialog", { name: "Résumé" })).toBeInTheDocument();
+  });
+
+  it("opens an app from a hash deep link after boot", async () => {
+    window.location.hash = "#/resume";
+    const user = userEvent.setup();
+    renderShell();
+    await boot(user);
+
+    expect(screen.getByRole("dialog", { name: "Résumé" })).toBeInTheDocument();
+  });
+
+  it("updates visible UI when the language is changed", async () => {
+    const user = userEvent.setup();
+    renderShell();
+    await boot(user);
+
+    const select = screen.getByRole("combobox", { name: /language/i });
+    await user.selectOptions(select, "fr");
+
+    expect(
+      screen.getByRole("button", { name: /ouvrir à propos/i })
+    ).toBeInTheDocument();
   });
 });
