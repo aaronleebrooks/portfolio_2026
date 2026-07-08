@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 
 interface UseDragOptions {
@@ -22,6 +22,7 @@ interface DragOrigin {
  */
 export function useDrag({ x, y, disabled, onMove }: UseDragOptions) {
   const origin = useRef<DragOrigin | null>(null);
+  const [dragging, setDragging] = useState(false);
 
   const onPointerMove = useCallback(
     (event: PointerEvent) => {
@@ -41,6 +42,9 @@ export function useDrag({ x, y, disabled, onMove }: UseDragOptions) {
 
   const onPointerUp = useCallback(() => {
     origin.current = null;
+    setDragging(false);
+    document.body.style.cursor = "";
+    document.body.style.userSelect = "";
     window.removeEventListener("pointermove", onPointerMove);
     window.removeEventListener("pointerup", onPointerUp);
   }, [onPointerMove]);
@@ -56,11 +60,14 @@ export function useDrag({ x, y, disabled, onMove }: UseDragOptions) {
         windowX: x,
         windowY: y,
       };
+      setDragging(true);
+      document.body.style.cursor = "grabbing";
+      document.body.style.userSelect = "none";
       window.addEventListener("pointermove", onPointerMove);
       window.addEventListener("pointerup", onPointerUp);
     },
     [disabled, x, y, onPointerMove, onPointerUp]
   );
 
-  return { onPointerDown };
+  return { onPointerDown, dragging };
 }

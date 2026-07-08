@@ -18,7 +18,7 @@ interface WindowProps {
 
 export function Window({ window: win, focused, children }: WindowProps) {
   const dispatch = useAppDispatch();
-  const { onPointerDown } = useDrag({
+  const { onPointerDown, dragging } = useDrag({
     x: win.x,
     y: win.y,
     disabled: win.maximized,
@@ -46,7 +46,9 @@ export function Window({ window: win, focused, children }: WindowProps) {
     >
       <div
         className="title-bar"
-        style={{ cursor: win.maximized ? "default" : "move" }}
+        style={{
+          cursor: win.maximized ? "default" : dragging ? "grabbing" : "grab",
+        }}
         onPointerDown={onPointerDown}
         onDoubleClick={() => dispatch(toggleMaximize(win.id))}
       >
