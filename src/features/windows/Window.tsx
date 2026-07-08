@@ -126,16 +126,22 @@ export function Window({ window: win, focused, children }: WindowProps) {
         </div>
         <div className="title-bar-controls">
           <button
+            type="button"
+            data-control="minimize"
             aria-label={t("window.minimize")}
             onClick={() => dispatch(minimizeWindow(win.id))}
           />
           <button
+            type="button"
+            data-control={win.maximized ? "restore" : "maximize"}
             aria-label={
               win.maximized ? t("window.restore") : t("window.maximize")
             }
             onClick={() => dispatch(toggleMaximize(win.id))}
           />
           <button
+            type="button"
+            data-control="close"
             aria-label={t("window.close")}
             onClick={() => {
               dispatch(closeWindow(win.id));

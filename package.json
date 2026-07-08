@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "gen:window-controls": "node scripts/gen-window-controls-css.mjs",
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage"

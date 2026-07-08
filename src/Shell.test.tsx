@@ -100,6 +100,7 @@ describe("Shell", () => {
     const user = userEvent.setup();
     renderShell();
     await boot(user);
+    await user.dblClick(screen.getByRole("button", { name: /open about me/i }));
 
     const select = screen.getByRole("combobox", { name: /language/i });
     await user.selectOptions(select, "fr");
@@ -107,5 +108,8 @@ describe("Shell", () => {
     expect(
       screen.getByRole("button", { name: /ouvrir à propos/i })
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /réduire/i })
+    ).toHaveAttribute("data-control", "minimize");
   });
 });
