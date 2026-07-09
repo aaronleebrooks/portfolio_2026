@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { AimChat } from "../apps/ai/AimChat";
+import { defaultCreateEmbedder } from "../apps/ai/defaultEmbedder";
 import { APPS, getApp, isExternalApp } from "../apps/registry";
 import { useAppLabels } from "../apps/useAppLabels";
 import { useOpenApp } from "../apps/useOpenApp";
@@ -48,6 +50,8 @@ export function Desktop() {
           </Window>
         );
       })}
+
+      <AimChat createEmbedder={defaultCreateEmbedder} />
     </div>
   );
 }

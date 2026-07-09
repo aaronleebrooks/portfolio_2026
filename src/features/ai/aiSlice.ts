@@ -43,15 +43,16 @@ function isAiMessage(value: unknown): value is AiMessage {
 export function readStoredAiState(): Pick<AiState, "open" | "messages"> {
   try {
     const raw = localStorage.getItem(AI_STORAGE_KEY);
-    if (!raw) return { open: true, messages: [] };
+    if (!raw) return { open: false, messages: [] };
     const parsed = JSON.parse(raw) as Partial<StoredAiState>;
-    const open = typeof parsed.open === "boolean" ? parsed.open : true;
+    // Default closed until auto-open; only restore true when explicitly persisted.
+    const open = parsed.open === true;
     const messages = Array.isArray(parsed.messages)
       ? parsed.messages.filter(isAiMessage)
       : [];
     return { open, messages };
   } catch {
-    return { open: true, messages: [] };
+    return { open: false, messages: [] };
   }
 }
 

@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import type { ReactElement } from "react";
@@ -182,5 +182,60 @@ describe("Shell", () => {
     expect(
       screen.getByRole("button", { name: /réduire/i })
     ).toHaveAttribute("data-control", "minimize");
+  });
+
+  it("auto-opens the AIM chat ~1s after boot without focusing the input", async () => {
+    jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+    renderShell();
+    await boot(user);
+
+    expect(screen.queryByRole("dialog", { name: /aim/i })).toBeNull();
+
+    await act(async () => {
+      await jest.advanceTimersByTimeAsync(1000);
+    });
+
+    const dialog = screen.getByRole("dialog", { name: /aim/i });
+    expect(dialog).toBeInTheDocument();
+    const input = screen.getByRole("textbox", { name: /type a question/i });
+    expect(document.activeElement).not.toBe(input);
+
+    jest.useRealTimers();
+  });
+
+  it("does not auto-open AIM when the user previously closed it", async () => {
+    localStorage.setItem(
+      "aiChat",
+      JSON.stringify({ open: false, messages: [] })
+    );
+    jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+    renderShell();
+    await boot(user);
+
+    await act(async () => {
+      await jest.advanceTimersByTimeAsync(2000);
+    });
+    expect(screen.queryByRole("dialog", { name: /aim/i })).toBeNull();
+
+    jest.useRealTimers();
+  });
+
+  it("toggles the AIM panel from the taskbar buddy button", async () => {
+    localStorage.setItem(
+      "aiChat",
+      JSON.stringify({ open: false, messages: [] })
+    );
+    const user = userEvent.setup();
+    renderShell();
+    await boot(user);
+
+    expect(screen.queryByRole("dialog", { name: /aim/i })).toBeNull();
+    await user.click(screen.getByRole("button", { name: /open aim buddy/i }));
+    expect(screen.getByRole("dialog", { name: /aim/i })).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: /open aim buddy/i }));
+    expect(screen.queryByRole("dialog", { name: /aim/i })).toBeNull();
   });
 });

@@ -98,11 +98,11 @@ describe("aiSlice", () => {
   });
 
   it("falls back safely when storage is absent or corrupt", () => {
-    expect(readStoredAiState().open).toBe(true);
+    expect(readStoredAiState().open).toBe(false);
     expect(readStoredAiState().messages).toEqual([]);
 
     localStorage.setItem(AI_STORAGE_KEY, "{not-json");
-    expect(readStoredAiState().open).toBe(true);
+    expect(readStoredAiState().open).toBe(false);
     expect(readStoredAiState().messages).toEqual([]);
   });
 });

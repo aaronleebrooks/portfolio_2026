@@ -2,11 +2,17 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppLabels } from "../apps/useAppLabels";
 import { Clock } from "../Clock";
+import { toggleChat } from "../features/ai/aiSlice";
 import {
   focusWindow,
   minimizeWindow,
 } from "../features/windows/windowsSlice";
-import { toggleMuted, setAccessibleMode, useAppDispatch, useAppSelector } from "../store";
+import {
+  toggleMuted,
+  setAccessibleMode,
+  useAppDispatch,
+  useAppSelector,
+} from "../store";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { StartMenu } from "./StartMenu";
 
@@ -44,6 +50,7 @@ export function Taskbar() {
   const [startOpen, setStartOpen] = useState(false);
   const windows = useAppSelector((state) => state.windows.windows);
   const muted = useAppSelector((state) => state.settings.soundMuted);
+  const aiOpen = useAppSelector((state) => state.ai.open);
 
   return (
     <>
@@ -77,6 +84,15 @@ export function Taskbar() {
         </div>
 
         <div className="flex items-center gap-2 rounded bg-blue-700 px-2 py-1 text-sm">
+          <button
+            type="button"
+            aria-label={t("apps.ai.reopen")}
+            aria-pressed={aiOpen}
+            onClick={() => dispatch(toggleChat())}
+            className="border-0 bg-transparent p-0 text-white"
+          >
+            💬
+          </button>
           <LanguageSwitcher />
           <button
             type="button"

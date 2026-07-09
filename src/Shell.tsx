@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { I18nSync } from "./i18n/I18nSync";
+import { useAiAutoOpen } from "./apps/ai/useAiAutoOpen";
 import { useOpenApp } from "./apps/useOpenApp";
 import { AccessibleView } from "./components/AccessibleView";
 import { BootSplash } from "./components/BootSplash";
 import { Desktop } from "./components/Desktop";
 import { Taskbar } from "./components/Taskbar";
+import { I18nSync } from "./i18n/I18nSync";
 import { useHashDeepLink } from "./routing/useHashDeepLink";
 import { setAccessibleMode, useAppDispatch, useAppSelector } from "./store";
 
@@ -15,6 +16,7 @@ export function Shell() {
   const openApp = useOpenApp();
 
   useHashDeepLink(openApp, booted && !accessibleMode);
+  useAiAutoOpen(booted && !accessibleMode);
 
   if (!booted) {
     return (
