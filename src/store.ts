@@ -2,6 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import type { TypedUseSelectorHook } from "react-redux";
+import aiReducer from "./features/ai/aiSlice";
 import windowsReducer from "./features/windows/windowsSlice";
 import {
   readStoredAccessibleMode,
@@ -67,6 +68,7 @@ export const makeStore = () =>
     reducer: {
       settings: settingsSlice.reducer,
       windows: windowsReducer,
+      ai: aiReducer,
     },
   });
 
