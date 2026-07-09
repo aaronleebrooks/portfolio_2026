@@ -31,7 +31,7 @@ export function Desktop() {
       className="relative flex-1 overflow-hidden bg-gradient-to-b from-sky-400 via-sky-500 to-green-600"
       aria-label={t("desktop.aria")}
     >
-      <div className="absolute left-2 top-2 flex flex-col gap-3">
+      <div className="absolute left-2 top-2 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-1">
         {APPS.map((app) => (
           <DesktopAppIcon key={app.id} appId={app.id} />
         ))}

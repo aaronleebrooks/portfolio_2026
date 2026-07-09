@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { TypedUseSelectorHook } from "react-redux";
 import windowsReducer from "./features/windows/windowsSlice";
 import {
+  readStoredAccessibleMode,
   readStoredLocale,
   readStoredMuted,
   type SupportedLocale,
@@ -12,6 +13,7 @@ import {
 interface SettingsState {
   soundMuted: boolean;
   language: SupportedLocale;
+  accessibleMode: boolean;
 }
 
 const settingsSlice = createSlice({
@@ -19,6 +21,7 @@ const settingsSlice = createSlice({
   initialState: (): SettingsState => ({
     soundMuted: readStoredMuted(),
     language: readStoredLocale(),
+    accessibleMode: readStoredAccessibleMode(),
   }),
   reducers: {
     setMuted(state, action: PayloadAction<boolean>) {
@@ -45,10 +48,19 @@ const settingsSlice = createSlice({
         // ignore
       }
     },
+    setAccessibleMode(state, action: PayloadAction<boolean>) {
+      state.accessibleMode = action.payload;
+      try {
+        localStorage.setItem("accessibleMode", String(action.payload));
+      } catch {
+        // ignore
+      }
+    },
   },
 });
 
-export const { setMuted, toggleMuted, setLanguage } = settingsSlice.actions;
+export const { setMuted, toggleMuted, setLanguage, setAccessibleMode } =
+  settingsSlice.actions;
 
 export const makeStore = () =>
   configureStore({

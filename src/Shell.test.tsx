@@ -1,5 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "jest-axe";
 import type { ReactElement } from "react";
 import { Provider } from "react-redux";
 import { Shell } from "./Shell";
@@ -22,6 +23,7 @@ async function boot(user: ReturnType<typeof userEvent.setup>) {
 describe("Shell", () => {
   afterEach(() => {
     window.location.hash = "";
+    localStorage.clear();
   });
 
   it("boots into a desktop with app icons", async () => {
@@ -82,18 +84,73 @@ describe("Shell", () => {
 
     await user.click(screen.getByRole("button", { name: /^start$/i }));
     const menu = screen.getByRole("menu", { name: /start menu/i });
-    await user.click(within(menu).getByRole("menuitem", { name: /résumé/i }));
+    await user.click(
+      within(menu).getByRole("menuitem", { name: /adobe acrobat reader/i })
+    );
 
-    expect(screen.getByRole("dialog", { name: "Résumé" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("dialog", { name: "Adobe Acrobat Reader" })
+    ).toBeInTheDocument();
   });
 
-  it("opens an app from a hash deep link after boot", async () => {
+  it("opens the résumé viewer from a hash deep link after boot", async () => {
     window.location.hash = "#/resume";
     const user = userEvent.setup();
     renderShell();
     await boot(user);
 
-    expect(screen.getByRole("dialog", { name: "Résumé" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("dialog", { name: "Adobe Acrobat Reader" })
+    ).toBeInTheDocument();
+  });
+
+  it("reveals email from the email app", async () => {
+    const user = userEvent.setup();
+    renderShell();
+    await boot(user);
+
+    await user.dblClick(screen.getByRole("button", { name: /open email/i }));
+    await user.click(screen.getByRole("button", { name: /show email address/i }));
+
+    expect(screen.getByRole("link")).toHaveTextContent(
+      "TheAaronLeeBrooks@gmail.com"
+    );
+  });
+
+  it("opens plain résumé accessible mode from the taskbar", async () => {
+    const user = userEvent.setup();
+    renderShell();
+    await boot(user);
+
+    await user.click(screen.getByRole("button", { name: /plain résumé view/i }));
+
+    expect(
+      screen.getByRole("heading", { name: /aaron brooks — résumé/i })
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /^start$/i })).toBeNull();
+  });
+
+  it("has no axe violations in accessible mode", async () => {
+    const user = userEvent.setup();
+    const { container } = renderShell();
+    await boot(user);
+    await user.click(screen.getByRole("button", { name: /plain résumé view/i }));
+
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it("passes axe checks on the desktop shell with contrast rules relaxed", async () => {
+    const user = userEvent.setup();
+    const { container } = renderShell();
+    await boot(user);
+
+    const results = await axe(container, {
+      rules: {
+        "color-contrast": { enabled: false },
+      },
+    });
+    expect(results).toHaveNoViolations();
   });
 
   it("updates visible UI when the language is changed", async () => {

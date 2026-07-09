@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { APPS } from "../apps/registry";
 import { useAppLabels } from "../apps/useAppLabels";
 import { useOpenApp } from "../apps/useOpenApp";
+import { setAccessibleMode, useAppDispatch } from "../store";
 
 interface StartMenuProps {
   onClose: () => void;
@@ -34,6 +35,7 @@ function StartMenuItem({ appId, onClose }: { appId: string; onClose: () => void 
 
 export function StartMenu({ onClose }: StartMenuProps) {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -72,6 +74,19 @@ export function StartMenu({ onClose }: StartMenuProps) {
           ))}
           <li aria-hidden>
             <hr className="my-1" />
+          </li>
+          <li>
+            <button
+              role="menuitem"
+              type="button"
+              className="flex w-full items-center gap-2 border-0 bg-transparent p-1 text-left hover:bg-blue-700 hover:text-white"
+              onClick={() => {
+                dispatch(setAccessibleMode(true));
+                onClose();
+              }}
+            >
+              {t("taskbar.plainResume")}
+            </button>
           </li>
           <li>
             <button

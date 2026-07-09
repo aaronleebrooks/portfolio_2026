@@ -6,7 +6,7 @@ import {
   focusWindow,
   minimizeWindow,
 } from "../features/windows/windowsSlice";
-import { toggleMuted, useAppDispatch, useAppSelector } from "../store";
+import { toggleMuted, setAccessibleMode, useAppDispatch, useAppSelector } from "../store";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { StartMenu } from "./StartMenu";
 
@@ -60,6 +60,14 @@ export function Taskbar() {
           className="rounded bg-green-600 px-3 py-1 font-bold italic"
         >
           {t("taskbar.start")}
+        </button>
+
+        <button
+          type="button"
+          className="rounded bg-blue-700 px-2 py-1 text-xs"
+          onClick={() => dispatch(setAccessibleMode(true))}
+        >
+          {t("taskbar.plainResume")}
         </button>
 
         <div className="flex flex-1 items-center gap-1 overflow-hidden">

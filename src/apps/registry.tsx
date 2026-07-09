@@ -1,5 +1,10 @@
 import type { ComponentType } from "react";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import { BalloonViewer } from "./content/BalloonViewer";
+import { EmailApp } from "./content/EmailApp";
+import { GitHubApp } from "./content/GitHubApp";
+import { LinkedInApp } from "./content/LinkedInApp";
+import { ResumeViewer } from "./content/ResumeViewer";
 
 export interface AppDefinition {
   id: string;
@@ -20,36 +25,6 @@ function AboutContent() {
   );
 }
 
-function ResumeContent() {
-  const { t } = useTranslation();
-  return (
-    <div className="space-y-2 text-sm leading-relaxed">
-      <p>{t("apps.resume.comingSoon")}</p>
-      <p>
-        <Trans
-          i18nKey="apps.resume.links"
-          components={{
-            linkedin: (
-              <a
-                href="https://linkedin.com/in/aaronleebrooks"
-                target="_blank"
-                rel="noreferrer noopener"
-              />
-            ),
-            github: (
-              <a
-                href="https://github.com/aaronleebrooks"
-                target="_blank"
-                rel="noreferrer noopener"
-              />
-            ),
-          }}
-        />
-      </p>
-    </div>
-  );
-}
-
 export const APPS: AppDefinition[] = [
   {
     id: "about",
@@ -61,9 +36,37 @@ export const APPS: AppDefinition[] = [
   {
     id: "resume",
     glyph: "📄",
+    defaultWidth: 640,
+    defaultHeight: 520,
+    Content: ResumeViewer,
+  },
+  {
+    id: "email",
+    glyph: "✉️",
     defaultWidth: 360,
-    defaultHeight: 200,
-    Content: ResumeContent,
+    defaultHeight: 220,
+    Content: EmailApp,
+  },
+  {
+    id: "linkedin",
+    glyph: "💼",
+    defaultWidth: 400,
+    defaultHeight: 260,
+    Content: LinkedInApp,
+  },
+  {
+    id: "github",
+    glyph: "🐙",
+    defaultWidth: 400,
+    defaultHeight: 260,
+    Content: GitHubApp,
+  },
+  {
+    id: "balloon",
+    glyph: "🎈",
+    defaultWidth: 480,
+    defaultHeight: 520,
+    Content: BalloonViewer,
   },
 ];
 
