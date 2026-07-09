@@ -17,6 +17,7 @@ export const resources = {
       desktop: {
         aria: "Desktop",
         openApp: "Open {{name}}",
+        openLink: "Open {{name}} (external link)",
       },
       window: {
         minimize: "Minimize",
@@ -79,14 +80,10 @@ export const resources = {
         linkedin: {
           title: "LinkedIn",
           iconLabel: "LinkedIn",
-          body: "Connect with me on LinkedIn for experience highlights and recommendations.",
-          open: "Open LinkedIn profile",
         },
         github: {
           title: "GitHub",
           iconLabel: "GitHub",
-          body: "Browse open-source work, this portfolio repo, and side projects on GitHub.",
-          open: "Open GitHub profile",
         },
         balloon: {
           title: "balloon.jpg",
@@ -115,6 +112,7 @@ export const resources = {
       desktop: {
         aria: "Bureau",
         openApp: "Ouvrir {{name}}",
+        openLink: "Ouvrir {{name}} (lien externe)",
       },
       window: {
         minimize: "Réduire",
@@ -177,14 +175,10 @@ export const resources = {
         linkedin: {
           title: "LinkedIn",
           iconLabel: "LinkedIn",
-          body: "Retrouvez-moi sur LinkedIn pour mon parcours et mes recommandations.",
-          open: "Ouvrir le profil LinkedIn",
         },
         github: {
           title: "GitHub",
           iconLabel: "GitHub",
-          body: "Parcourez mes projets open source, ce portfolio et mes side projects sur GitHub.",
-          open: "Ouvrir le profil GitHub",
         },
         balloon: {
           title: "balloon.jpg",
@@ -213,6 +207,7 @@ export const resources = {
       desktop: {
         aria: "Escritorio",
         openApp: "Abrir {{name}}",
+        openLink: "Abrir {{name}} (enlace externo)",
       },
       window: {
         minimize: "Minimizar",
@@ -275,14 +270,10 @@ export const resources = {
         linkedin: {
           title: "LinkedIn",
           iconLabel: "LinkedIn",
-          body: "Conéctate conmigo en LinkedIn para ver mi experiencia y recomendaciones.",
-          open: "Abrir perfil de LinkedIn",
         },
         github: {
           title: "GitHub",
           iconLabel: "GitHub",
-          body: "Explora mi trabajo open source, este portfolio y proyectos personales en GitHub.",
-          open: "Abrir perfil de GitHub",
         },
         balloon: {
           title: "balloon.jpg",

@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { openWindow } from "../features/windows/windowsSlice";
 import { setHashForApp } from "../routing/useHashDeepLink";
 import { useAppDispatch, useAppSelector } from "../store";
-import { getApp } from "./registry";
+import { getApp, isExternalApp } from "./registry";
 
 const CASCADE_STEP = 28;
 const BASE_X = 48;
@@ -16,6 +16,12 @@ export function useOpenApp() {
     (appId: string) => {
       const app = getApp(appId);
       if (!app) return;
+
+      if (isExternalApp(app)) {
+        window.open(app.externalUrl, "_blank", "noopener,noreferrer");
+        return;
+      }
+
       dispatch(
         openWindow({
           appId: app.id,

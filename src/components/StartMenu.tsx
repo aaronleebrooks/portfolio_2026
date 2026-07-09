@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { APPS } from "../apps/registry";
+import { APPS, isExternalApp } from "../apps/registry";
 import { useAppLabels } from "../apps/useAppLabels";
 import { useOpenApp } from "../apps/useOpenApp";
 import { setAccessibleMode, useAppDispatch } from "../store";
@@ -14,6 +14,24 @@ function StartMenuItem({ appId, onClose }: { appId: string; onClose: () => void 
   const app = APPS.find((a) => a.id === appId);
   const { title } = useAppLabels(appId);
   if (!app) return null;
+
+  if (isExternalApp(app)) {
+    return (
+      <li>
+        <a
+          role="menuitem"
+          href={app.externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex w-full items-center gap-2 p-1 text-left no-underline hover:bg-blue-700 hover:text-white"
+          onClick={onClose}
+        >
+          <span aria-hidden>{app.glyph}</span>
+          {title}
+        </a>
+      </li>
+    );
+  }
 
   return (
     <li>

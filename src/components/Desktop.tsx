@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { APPS, getApp } from "../apps/registry";
+import { APPS, getApp, isExternalApp } from "../apps/registry";
 import { useAppLabels } from "../apps/useAppLabels";
 import { useOpenApp } from "../apps/useOpenApp";
 import { Window } from "../features/windows/Window";
@@ -16,7 +16,8 @@ function DesktopAppIcon({ appId }: { appId: string }) {
     <DesktopIcon
       glyph={app.glyph}
       label={iconLabel}
-      onOpen={() => openApp(appId)}
+      href={isExternalApp(app) ? app.externalUrl : undefined}
+      onOpen={isExternalApp(app) ? undefined : () => openApp(appId)}
     />
   );
 }
@@ -39,7 +40,7 @@ export function Desktop() {
 
       {windows.map((win) => {
         const app = getApp(win.appId);
-        if (!app) return null;
+        if (!app || isExternalApp(app)) return null;
         const { Content } = app;
         return (
           <Window key={win.id} window={win} focused={focusedId === win.id}>

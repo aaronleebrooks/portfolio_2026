@@ -112,9 +112,9 @@ describe("Shell", () => {
     await user.dblClick(screen.getByRole("button", { name: /open email/i }));
     await user.click(screen.getByRole("button", { name: /show email address/i }));
 
-    expect(screen.getByRole("link")).toHaveTextContent(
-      "TheAaronLeeBrooks@gmail.com"
-    );
+    expect(
+      screen.getByRole("link", { name: "TheAaronLeeBrooks@gmail.com" })
+    ).toBeInTheDocument();
   });
 
   it("opens plain résumé accessible mode from the taskbar", async () => {
@@ -151,6 +151,20 @@ describe("Shell", () => {
       },
     });
     expect(results).toHaveNoViolations();
+  });
+
+  it("renders LinkedIn and GitHub as external links on the desktop", async () => {
+    renderShell();
+    await boot(userEvent.setup());
+
+    expect(screen.getByRole("link", { name: /open linkedin/i })).toHaveAttribute(
+      "href",
+      "https://linkedin.com/in/aaronleebrooks"
+    );
+    expect(screen.getByRole("link", { name: /open github/i })).toHaveAttribute(
+      "href",
+      "https://github.com/aaronleebrooks/portfolio_2026"
+    );
   });
 
   it("updates visible UI when the language is changed", async () => {

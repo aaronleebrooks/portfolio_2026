@@ -2,16 +2,32 @@ import type { ComponentType } from "react";
 import { useTranslation } from "react-i18next";
 import { BalloonViewer } from "./content/BalloonViewer";
 import { EmailApp } from "./content/EmailApp";
-import { GitHubApp } from "./content/GitHubApp";
-import { LinkedInApp } from "./content/LinkedInApp";
 import { ResumeViewer } from "./content/ResumeViewer";
+import { GITHUB_PORTFOLIO_URL, LINKEDIN_URL } from "./links";
 
-export interface AppDefinition {
+interface AppBase {
   id: string;
   glyph: string;
+}
+
+export interface WindowApp extends AppBase {
   defaultWidth: number;
   defaultHeight: number;
   Content: ComponentType;
+  externalUrl?: never;
+}
+
+export interface ExternalLinkApp extends AppBase {
+  externalUrl: string;
+  defaultWidth?: never;
+  defaultHeight?: never;
+  Content?: never;
+}
+
+export type AppDefinition = WindowApp | ExternalLinkApp;
+
+export function isExternalApp(app: AppDefinition): app is ExternalLinkApp {
+  return "externalUrl" in app;
 }
 
 function AboutContent() {
@@ -50,16 +66,12 @@ export const APPS: AppDefinition[] = [
   {
     id: "linkedin",
     glyph: "💼",
-    defaultWidth: 400,
-    defaultHeight: 260,
-    Content: LinkedInApp,
+    externalUrl: LINKEDIN_URL,
   },
   {
     id: "github",
     glyph: "🐙",
-    defaultWidth: 400,
-    defaultHeight: 260,
-    Content: GitHubApp,
+    externalUrl: GITHUB_PORTFOLIO_URL,
   },
   {
     id: "balloon",
