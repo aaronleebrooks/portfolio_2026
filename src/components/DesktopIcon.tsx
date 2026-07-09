@@ -11,7 +11,7 @@ interface DesktopIconProps {
 export function DesktopIcon({ glyph, label, href, onOpen }: DesktopIconProps) {
   const { t } = useTranslation();
   const className =
-    "flex w-20 cursor-default flex-col items-center gap-1 rounded p-1 text-center text-white no-underline focus:outline focus:outline-1 focus:outline-dotted focus:outline-white";
+    "flex w-20 cursor-default flex-col items-center gap-1 rounded p-1 text-center text-white! no-underline visited:text-white! hover:text-white! focus:outline focus:outline-1 focus:outline-dotted focus:outline-white";
 
   const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === "Enter" || event.key === " ") {
