@@ -51,7 +51,7 @@ export const resources = {
           headline: "Aaron Brooks — Full Stack Software Engineer",
           body: "8+ years building customer-facing EdTech at scale, specializing in React, TypeScript, and Redux. This site is a Windows XP–themed playground; poke around the desktop.",
           footnote:
-            "Open Résumé.pdf for the full CV, or try the AIM-style AI buddy in a later update.",
+            "Open Résumé.pdf for the full CV, or chat with the AIM-style AI buddy that auto-opens on the desktop.",
         },
         resume: {
           title: "Adobe Acrobat Reader",
@@ -166,7 +166,7 @@ export const resources = {
           headline: "Aaron Brooks — Ingénieur logiciel full stack",
           body: "Plus de 8 ans à construire des EdTech grand public à grande échelle, spécialisé en React, TypeScript et Redux. Ce site est un bureau Windows XP thématique — explorez.",
           footnote:
-            "Ouvrez CV.pdf pour le CV complet, ou essayez le compagnon IA style AIM bientôt.",
+            "Ouvrez CV.pdf pour le CV complet, ou discutez avec le compagnon IA style AIM qui s'ouvre sur le bureau.",
         },
         resume: {
           title: "Adobe Acrobat Reader",
@@ -281,7 +281,7 @@ export const resources = {
           headline: "Aaron Brooks — Ingeniero de software full stack",
           body: "Más de 8 años creando EdTech para el público a gran escala, especializado en React, TypeScript y Redux. Este sitio es un escritorio con temática Windows XP; explóralo.",
           footnote:
-            "Abre Currículum.pdf para el CV completo, o prueba el compañero IA estilo AIM pronto.",
+            "Abre Currículum.pdf para el CV completo, o chatea con el compañero IA estilo AIM que se abre en el escritorio.",
         },
         resume: {
           title: "Adobe Acrobat Reader",
