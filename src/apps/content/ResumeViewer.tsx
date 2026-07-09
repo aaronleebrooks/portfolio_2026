@@ -59,21 +59,14 @@ export function ResumeViewer() {
         </button>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-auto bg-[#808080] p-2">
-        <div
-          className="mx-auto flex h-full w-full items-center justify-center"
-          style={{
-            transform: `scale(${zoom})`,
-            transformOrigin: "center center",
-          }}
-        >
-          <img
-            src={resumeImageUrl}
-            alt={t("apps.resume.viewerTitle")}
-            draggable={false}
-            className="h-full w-full border border-[#404040] bg-white object-contain shadow-md"
-          />
-        </div>
+      <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto bg-[#808080] p-2">
+        <img
+          src={resumeImageUrl}
+          alt={t("apps.resume.viewerTitle")}
+          draggable={false}
+          className="mx-auto block h-auto max-w-none border border-[#404040] bg-white shadow-md"
+          style={{ width: `${zoom * 100}%` }}
+        />
       </div>
 
       <div className="shrink-0 border-t border-[#aca899] bg-[#ece9d8] px-2 py-0.5">
