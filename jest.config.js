@@ -22,5 +22,7 @@ module.exports = {
     "!src/**/*.d.ts",
     "!src/index.tsx",
     "!src/**/__mocks__/**",
+    "!src/**/*.worker.ts",
+    "!src/**/workerEmbedder.ts",
   ],
 };

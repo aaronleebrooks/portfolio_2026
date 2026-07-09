@@ -7,11 +7,16 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[contenthash].js",
+    chunkFilename: "[name].[contenthash].js",
     publicPath: "auto",
     clean: true,
+    workerPublicPath: "auto",
   },
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js"],
+  },
+  experiments: {
+    asyncWebAssembly: true,
   },
   module: {
     rules: [
@@ -19,6 +24,10 @@ module.exports = {
         test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules/,
         use: "swc-loader",
+      },
+      {
+        test: /\.wasm$/,
+        type: "asset/resource",
       },
       {
         test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
