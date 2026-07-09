@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { publicAssetUrl } from "../../utils/publicAssetUrl";
 
 const ZOOM_LEVELS = [0.75, 1, 1.25, 1.5] as const;
+const RESUME_MAX_WIDTH_PX = 800;
 
 export function ResumeViewer() {
   const { t } = useTranslation();
@@ -60,13 +61,18 @@ export function ResumeViewer() {
       </div>
 
       <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto bg-[#808080] p-2">
-        <img
-          src={resumeImageUrl}
-          alt={t("apps.resume.viewerTitle")}
-          draggable={false}
-          className="mx-auto block h-auto max-w-none border border-[#404040] bg-white shadow-md"
-          style={{ width: `${zoom * 100}%` }}
-        />
+        <div
+          className="mx-auto w-full"
+          style={{ maxWidth: RESUME_MAX_WIDTH_PX }}
+        >
+          <img
+            src={resumeImageUrl}
+            alt={t("apps.resume.viewerTitle")}
+            draggable={false}
+            className="block h-auto border border-[#404040] bg-white shadow-md"
+            style={{ width: `${zoom * 100}%` }}
+          />
+        </div>
       </div>
 
       <div className="shrink-0 border-t border-[#aca899] bg-[#ece9d8] px-2 py-0.5">
