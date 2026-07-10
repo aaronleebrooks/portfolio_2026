@@ -6,9 +6,18 @@ Personal portfolio for [Aaron Brooks](https://a-a-ron.party): a single-page Reac
 
 - Vite + React 19 + TypeScript
 - Tailwind CSS v4 + [shadcn/ui](https://ui.shadcn.com)
-- Motion (`motion/react`) for scroll reveals and card hover
-- Inter + JetBrains Mono (self-hosted via Fontsource)
+- CSS + Intersection Observer for scroll reveals / card hover
+- Inter + JetBrains Mono (latin-only, self-hosted via Fontsource)
 - Deployed to GitHub Pages (`a-a-ron.party`)
+
+## Caching note
+
+GitHub Pages hard-caps `Cache-Control` at `max-age=600` for all assets, including
+hashed `/assets/*` files. To get long-lived caching (and clear Lighthouse’s
+cache-lifetime audit), put Cloudflare in front of `a-a-ron.party` and add a
+Cache Rule for `/assets/*` → Cache Everything, Edge TTL 1 year
+(`immutable` is safe because Vite hashes filenames). Keep `index.html` short-TTL
+or bypass so deploys take effect immediately.
 
 ## Scripts
 

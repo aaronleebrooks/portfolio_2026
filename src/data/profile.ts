@@ -4,7 +4,7 @@ export const profile = {
   tagline: "Building accessible, AI-powered EdTech at scale.",
   location: "Ithaca, NY",
   email: "AaronLeeBrooks@proton.me",
-  resumeUrl: "/AaronBrooksResume.pdf",
+  resumeUrl: "./AaronBrooksResume.pdf",
   github: "https://github.com/aaronleebrooks",
   linkedin: "https://linkedin.com/in/aaronleebrooks",
   about: [

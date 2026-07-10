@@ -1,5 +1,4 @@
 import { ArrowUpRight } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -16,15 +15,11 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const reduce = useReducedMotion();
   const href = project.liveUrl ?? project.repoUrl;
   const linkLabel = project.liveUrl ? "Live demo" : "Repository";
 
   return (
-    <motion.div
-      whileHover={reduce ? undefined : { y: -6 }}
-      transition={{ type: "spring", stiffness: 300, damping: 22 }}
-    >
+    <div className="transition-transform duration-300 ease-out motion-safe:hover:-translate-y-1.5">
       <Card className="h-full transition-shadow hover:shadow-lg hover:shadow-primary/10">
         <CardHeader>
           <div className="flex items-start justify-between gap-3">
@@ -61,6 +56,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </ul>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   );
 }

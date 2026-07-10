@@ -4,7 +4,9 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/",
+  // Relative base so assets resolve on both a-a-ron.party/ and
+  // aaronleebrooks.github.io/portfolio_2026/ (project Pages).
+  base: "./",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
