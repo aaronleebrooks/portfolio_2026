@@ -1,27 +1,32 @@
-# portfolio_2026
+# Aaron Brooks — Portfolio
 
-A Windows XP desktop–themed portfolio for **Aaron Brooks**, Full Stack Software
-Engineer.
-
-Live: https://aaronleebrooks.github.io/portfolio_2026/ (custom domain
-`a-a-ron.party` coming soon).
+Personal portfolio for [Aaron Brooks](https://a-a-ron.party): a single-page React + TypeScript app with a Brittany Chiang–inspired sticky-left layout.
 
 ## Stack
 
-- React 19 + TypeScript
-- Webpack 5 (SWC transform via `swc-loader`)
-- Redux Toolkit
-- Tailwind CSS v4 + [XP.css](https://botoxparty.github.io/XP.css/)
-- Jest + React Testing Library
-- Deployed to GitHub Pages via GitHub Actions
+- Vite + React 19 + TypeScript
+- Tailwind CSS v4 + [shadcn/ui](https://ui.shadcn.com)
+- Motion (`motion/react`) for scroll reveals and card hover
+- Inter + JetBrains Mono (self-hosted via Fontsource)
+- Deployed to GitHub Pages (`a-a-ron.party`)
 
 ## Scripts
 
 ```bash
-npm run dev        # local dev server (requires Node 22+)
-npm run build      # production build to dist/
-npm test           # unit tests
-npm run typecheck  # tsc --noEmit
+npm install
+npm run dev       # local dev server
+npm run build     # typecheck + production build → dist/
+npm run preview   # preview production build
+npm run typecheck
 ```
 
-Node 22+ recommended (see `.nvmrc`).
+## Structure
+
+- `src/data/` — profile, skills, experience, projects (typed content)
+- `src/components/layout/` — sticky sidebar + mobile sheet nav
+- `src/components/sections/` — About, Experience, Projects, Contact
+- `src/components/ui/` — shadcn primitives
+
+## Deploy
+
+Push to `main` triggers `.github/workflows/deploy.yml`, which builds with Vite and publishes `dist/` to GitHub Pages. `public/CNAME` keeps the custom domain `a-a-ron.party`.
