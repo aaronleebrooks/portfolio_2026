@@ -3,7 +3,7 @@ export const profile = {
   title: "Full-Stack Engineer",
   tagline: "Building accessible, AI-powered EdTech at scale.",
   location: "Ithaca, NY",
-  email: "TheAaronLeeBrooks@gmail.com",
+  email: "AaronLeeBrooks@proton.me",
   resumeUrl: "/AaronBrooksResume.pdf",
   github: "https://github.com/aaronleebrooks",
   linkedin: "https://linkedin.com/in/aaronleebrooks",

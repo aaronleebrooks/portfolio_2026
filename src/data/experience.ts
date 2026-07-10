@@ -18,7 +18,7 @@ export const experience: ExperienceItem[] = [
     start: "Jul 2021",
     end: "Present",
     highlights: [
-      "Led AI-powered assessment tooling and product-agnostic micro front-ends serving 1M+ users, including an OpenAI-backed QTI item generator and an AI credit entitlement system that protects against uncapped spend.",
+      "Led AI-powered assessment tooling and product-agnostic micro front-ends serving 1M+ users — including a Question Creator covering 15 QTI interaction types with in-editor AI generation, an Assessment Creator with AI-assisted full-test authoring, and an AI credit entitlement system that protects against uncapped spend.",
       "Owned epics from tech design through GA, led a scrum team, and mentored engineers while shipping accessible React/TypeScript platforms for tests, rubrics, and personalized learning.",
     ],
     tech: ["React", "TypeScript", "Redux Toolkit", "AWS Lambda", "DynamoDB", "OpenAI"],
