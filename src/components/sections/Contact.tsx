@@ -62,6 +62,19 @@ export function Contact() {
               </a>
             }
           />
+          <Button
+            variant="outline"
+            size="lg"
+            render={
+              <a
+                href={profile.letterboxd}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Letterboxd
+              </a>
+            }
+          />
         </div>
       </Reveal>
     </section>

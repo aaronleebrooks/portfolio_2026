@@ -1,7 +1,7 @@
 import { FileText, Mail } from "lucide-react";
 import { useState } from "react";
 
-import { GitHubIcon, LinkedInIcon } from "@/components/icons";
+import { GitHubIcon, LetterboxdIcon, LinkedInIcon } from "@/components/icons";
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
@@ -40,6 +40,18 @@ export function SocialLinks({ className, showLabels = false }: SocialLinksProps)
         >
           <LinkedInIcon className="size-5" />
           {showLabels ? <span className="text-sm">LinkedIn</span> : null}
+        </a>
+      </li>
+      <li>
+        <a
+          href={profile.letterboxd}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+          aria-label="Letterboxd"
+        >
+          <LetterboxdIcon className="size-5" />
+          {showLabels ? <span className="text-sm">Letterboxd</span> : null}
         </a>
       </li>
       <li>

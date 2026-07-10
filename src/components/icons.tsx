@@ -17,3 +17,11 @@ export function LinkedInIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function LetterboxdIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M23.07 9v6.27h-3.07V9H23.07zM8.93 9v6.27H5.86V9H8.93zM16 9v6.27h-3.07V9H16zM0 9v6.27h3.07V9H0z" />
+    </svg>
+  );
+}
