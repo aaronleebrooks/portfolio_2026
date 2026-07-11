@@ -41,7 +41,7 @@ export function Experience() {
                     {job.tech.map((item) => (
                       <li key={item}>
                         <Badge
-                          variant="outline"
+                          variant="secondary"
                           className="font-mono text-[11px] font-normal"
                         >
                           {item}

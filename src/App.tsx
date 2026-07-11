@@ -24,19 +24,24 @@ export default function App() {
       <div className="mx-auto grid max-w-6xl gap-4 px-6 lg:grid-cols-[minmax(280px,340px)_minmax(0,1fr)] lg:gap-16 lg:px-12">
         <Sidebar activeId={activeId} />
 
-        <main id="main" className="min-w-0 pb-24 lg:py-24">
-          <About />
-          <Experience />
-          <Projects />
-          <Contact />
+        <div className="min-w-0 pb-24 lg:py-24">
+          <main id="main">
+            <About />
+            <Experience />
+            <Projects />
+            <Contact />
+          </main>
 
-          <footer className="mt-8 border-t border-border pt-8 text-sm text-muted-foreground">
+          <footer
+            role="contentinfo"
+            className="mt-8 border-t border-border pt-8 text-sm text-muted-foreground"
+          >
             <p>
               Built with React, TypeScript, Vite, Tailwind, and shadcn/ui.
               Designed for accessibility and performance.
             </p>
           </footer>
-        </main>
+        </div>
       </div>
     </>
   );

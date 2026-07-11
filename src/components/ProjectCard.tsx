@@ -46,7 +46,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {project.tech.map((item) => (
               <li key={item}>
                 <Badge
-                  variant="outline"
+                  variant="secondary"
                   className="font-mono text-[11px] font-normal"
                 >
                   {item}

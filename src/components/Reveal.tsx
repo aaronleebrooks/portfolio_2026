@@ -13,10 +13,7 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) {
-      return;
-    }
+    const el = ref.current as HTMLDivElement;
 
     const observer = new IntersectionObserver(
       ([entry]) => {

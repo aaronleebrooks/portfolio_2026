@@ -1,0 +1,8 @@
+/* Minimal styles so Reveal visibility assertions work without Tailwind. */
+.reveal {
+  opacity: 0;
+}
+
+.reveal-visible {
+  opacity: 1;
+}
