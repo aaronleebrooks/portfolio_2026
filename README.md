@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/aaronleebrooks/portfolio_2026/actions/workflows/ci.yml/badge.svg)](https://github.com/aaronleebrooks/portfolio_2026/actions/workflows/ci.yml)
 
-This is my interactive portfolio — a single-page React app for my work as a full-stack engineer. It’s built with modern tooling (React 19, Tailwind v4, shadcn/ui) and held to **100% unit test coverage**, because I care as much about accessible, well-tested software as about how it looks.
+This is my interactive portfolio — a single-page React app for my work as a full-stack engineer. It’s built with modern tooling (React 19, Tailwind v4, shadcn/ui) and held to **100% unit test coverage**.
 
 **[View live portfolio →](https://a-a-ron.party)** · [Coverage report](https://a-a-ron.party/tests/coverage/) · [E2E report](https://a-a-ron.party/tests/e2e/) · [CI](https://github.com/aaronleebrooks/portfolio_2026/actions/workflows/ci.yml)
 

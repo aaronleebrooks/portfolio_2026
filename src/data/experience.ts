@@ -22,7 +22,8 @@ export const experience: ExperienceItem[] = [
       "Replaced a legacy jQuery question-creation page with a React SPA (Redux Toolkit, Lambda, DynamoDB, CKEditor 5), unifying 15 question types into a single QTI-standardized editor with AI generation scaling from 1 to 10 questions per minute. Serves 30M+ students across 5,000+ institutions.",
       "Built product-agnostic micro front-ends consumed by Performance Matters and other PowerSchool applications — including a QTI assessment creator and rubric suite (creator, viewer, access-aware catalog) with district-level access control.",
       "Designed \"allotments,\" an AI credit entitlement system for per-org metered billing across a platform serving 1M+ users — generating $1M+ in revenue and capping exposure to uncapped OpenAI costs averaging $20K+/month per org.",
-      "Stepped up as acting team lead for 3 months, directing a team of 3 through a migration to PowerSchool's Neon design library (60+ components). Now front-end tech lead and epic owner for the assessment creator.",
+      "Recurring acting team lead, stepping in to cover absences for weeks or months at a time. Ran stand-ups, retros, planning, and code reviews, keeping momentum steady while the team stayed focused on delivery.",
+      "Front-end tech lead and epic owner for the AI question generator and assessment creator. Led a team of 3 through a migration to PowerSchool's Neon design library (60+ components). All projects delivered on time and above quality bar.",
     ],
     tech: [
       "React",
@@ -33,6 +34,7 @@ export const experience: ExperienceItem[] = [
       "OpenSearch",
       "OpenAI",
       "QTI",
+      "Playwright",
     ],
   },
   {
@@ -49,7 +51,7 @@ export const experience: ExperienceItem[] = [
       "Migrated 50GB of static assets from on-prem to versioned S3 + CloudFront, improving data security and enabling asset versioning for resources delivered to millions of students.",
       "Built accessibility and geometry test-taking tools for students — focus reader, text-to-speech, on-screen ruler, protractor, and compass — available to all users, activated by teachers as needed.",
     ],
-    tech: ["React", "jQuery", "Node", "S3", "CloudFront", "REST APIs", "DataTables"],
+    tech: ["React", "Redux Toolkit", "TypeScript", "jQuery", "Node", "S3", "CloudFront", "REST APIs", "DataTables"],
   },
   {
     id: "thinkful",
