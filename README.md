@@ -2,7 +2,9 @@
 
 [![CI](https://github.com/aaronleebrooks/portfolio_2026/actions/workflows/ci.yml/badge.svg)](https://github.com/aaronleebrooks/portfolio_2026/actions/workflows/ci.yml)
 
-Personal portfolio for [Aaron Brooks](https://a-a-ron.party): a single-page React + TypeScript app with a Brittany Chiang–inspired sticky-left layout.
+This is my interactive portfolio — a single-page React app for my work as a full-stack engineer. It’s built with modern tooling (React 19, Tailwind v4, shadcn/ui) and held to **100% unit test coverage**, because I care as much about accessible, well-tested software as about how it looks.
+
+**[View live portfolio →](https://a-a-ron.party)** · [Coverage report](https://a-a-ron.party/tests/coverage/) · [E2E report](https://a-a-ron.party/tests/e2e/) · [CI](https://github.com/aaronleebrooks/portfolio_2026/actions/workflows/ci.yml)
 
 ## Stack
 
@@ -14,18 +16,20 @@ Personal portfolio for [Aaron Brooks](https://a-a-ron.party): a single-page Reac
 
 ## Testing
 
-Two complementary layers:
+**100% unit coverage** is enforced in CI. Component tests query the DOM the way users and assistive tech do — roles and labels via React Testing Library — not `querySelector` / `getElementById`. Playwright covers real browser flows (nav, mobile sheet, contact) with axe checks for serious/critical WCAG issues.
 
 | Layer | Tool | What it proves |
 |-------|------|----------------|
-| **Unit / component** | Vitest + React Testing Library | **100%** coverage; queries use accessible roles/labels only (no `querySelector` / `getElementById` in tests) |
-| **E2E** | Playwright + axe | Real browser flows (nav, mobile sheet, contact) and WCAG serious/critical checks |
+| Unit / component | Vitest + React Testing Library | Every branch; accessibility-first queries |
+| E2E | Playwright + axe | User journeys + a11y on the production build |
 
-| Resource | URL |
-|----------|-----|
-| Latest CI run | https://github.com/aaronleebrooks/portfolio_2026/actions/workflows/ci.yml |
-| Unit coverage report | https://a-a-ron.party/tests/coverage/ |
-| E2E report | https://a-a-ron.party/tests/e2e/ |
+Published after each successful deploy to `main`:
+
+- [Unit coverage (HTML)](https://a-a-ron.party/tests/coverage/)
+- [E2E report (HTML)](https://a-a-ron.party/tests/e2e/)
+
+<details>
+<summary>Test commands</summary>
 
 ```bash
 npm run test            # Vitest unit suite
@@ -35,15 +39,7 @@ npm run lint:test       # ESLint testing-library rules on *.test.*
 npm run test:all        # typecheck + lint:test + coverage + e2e
 ```
 
-## Scripts
-
-```bash
-npm install
-npm run dev       # local dev server
-npm run build     # typecheck + production build → dist/
-npm run preview   # preview production build
-npm run typecheck
-```
+</details>
 
 ## Structure
 
@@ -53,9 +49,19 @@ npm run typecheck
 - `src/components/ui/` — shadcn primitives
 - `e2e/` — Playwright specs
 
+<details>
+<summary>Local scripts</summary>
+
+```bash
+npm install
+npm run dev       # local dev server
+npm run build     # typecheck + production build → dist/
+npm run preview   # preview production build
+npm run typecheck
+```
+
+</details>
+
 ## Deploy
 
-Push to `main` triggers `.github/workflows/ci.yml`, which typechecks, lints tests,
-runs unit coverage + Playwright, then builds and publishes `dist/` (including
-`/tests/coverage` and `/tests/e2e` reports) to GitHub Pages. `public/CNAME`
-keeps the custom domain `a-a-ron.party`.
+Push to `main` runs `.github/workflows/ci.yml`: typecheck, lint tests, unit coverage, Playwright, then publish `dist/` (including `/tests/coverage` and `/tests/e2e`) to GitHub Pages. `public/CNAME` keeps the custom domain `a-a-ron.party`.
