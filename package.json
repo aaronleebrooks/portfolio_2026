@@ -13,7 +13,8 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:all": "npm run typecheck && npm run lint:test && npm run test:coverage && npm run test:e2e",
-    "lint:test": "eslint \"src/**/*.test.{ts,tsx}\""
+    "lint:test": "eslint \"src/**/*.test.{ts,tsx}\"",
+    "update:picross": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/update-picross-quest.ps1"
   },
   "license": "MIT",
   "engines": {

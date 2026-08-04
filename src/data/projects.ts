@@ -3,7 +3,7 @@ export type Project = {
   name: string;
   description: string;
   tech: string[];
-  /** Optional public live demo URL (e.g. future Godot embeds). */
+  /** Optional public live demo URL. */
   liveUrl?: string;
   /** Optional public repository URL. */
   repoUrl?: string;
@@ -37,5 +37,13 @@ export const projects: Project[] = [
     description:
       "Built rubric applications (creator, viewer, access-aware catalog) with React, Redux Toolkit, DynamoDB, Lambda, and AWS OpenSearch. Now serving Performance Matters and Schoology customers with district-level access control.",
     tech: ["React", "Redux Toolkit", "MFE", "OpenSearch", "DynamoDB"],
+  },
+  {
+    id: "picross-quest",
+    name: "Picross Quest",
+    description:
+      "Dungeon-themed picross (nonogram) game built in Godot 4 and exported to the web. Solve pixel logic puzzles in a dungeon crawl setting; playable in-browser from this site.",
+    tech: ["Godot 4", "GDScript", "WebAssembly"],
+    liveUrl: "https://a-a-ron.party/games/picross-quest/",
   },
 ];
