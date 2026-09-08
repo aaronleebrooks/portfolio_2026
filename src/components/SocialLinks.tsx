@@ -1,5 +1,4 @@
 import { FileText, Mail } from "lucide-react";
-import { useState } from "react";
 
 import { GitHubIcon, LetterboxdIcon, LinkedInIcon } from "@/components/icons";
 import { profile } from "@/data/profile";
@@ -14,8 +13,6 @@ const linkClass =
   "inline-flex items-center gap-2 rounded-md p-2 text-muted-foreground transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
 export function SocialLinks({ className, showLabels = false }: SocialLinksProps) {
-  const [emailRevealed, setEmailRevealed] = useState(false);
-
   return (
     <ul className={cn("flex flex-wrap items-center gap-1", className)}>
       <li>
@@ -55,28 +52,14 @@ export function SocialLinks({ className, showLabels = false }: SocialLinksProps)
         </a>
       </li>
       <li>
-        {emailRevealed ? (
-          <a
-            href={`mailto:${profile.email}`}
-            className={linkClass}
-            aria-label={`Email ${profile.email}`}
-          >
-            <Mail className="size-5" aria-hidden="true" />
-            {showLabels ? (
-              <span className="text-sm">{profile.email}</span>
-            ) : null}
-          </a>
-        ) : (
-          <button
-            type="button"
-            className={linkClass}
-            onClick={() => setEmailRevealed(true)}
-            aria-label="Reveal email address"
-          >
-            <Mail className="size-5" aria-hidden="true" />
-            {showLabels ? <span className="text-sm">Email</span> : null}
-          </button>
-        )}
+        <a
+          href={`mailto:${profile.email}`}
+          className={linkClass}
+          aria-label={`Email ${profile.email}`}
+        >
+          <Mail className="size-5" aria-hidden="true" />
+          {showLabels ? <span className="text-sm">{profile.email}</span> : null}
+        </a>
       </li>
       <li>
         <a

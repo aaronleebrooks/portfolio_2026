@@ -7,6 +7,9 @@ import { Projects } from "@/components/sections/Projects";
 import { sectionIds } from "@/data/profile";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 
+const reportLinkClass =
+  "underline underline-offset-4 transition-colors hover:text-primary";
+
 export default function App() {
   const activeId = useScrollSpy(sectionIds);
 
@@ -37,8 +40,25 @@ export default function App() {
             className="mt-8 border-t border-border pt-8 text-sm text-muted-foreground"
           >
             <p>
-              Built with React, TypeScript, Vite, Tailwind, and shadcn/ui.
-              Designed for accessibility and performance.
+              I test this site the way I test production code: 100% unit
+              coverage and a Playwright end-to-end suite, both public.{" "}
+              <a
+                href="/tests/coverage/"
+                className={reportLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Coverage report
+              </a>
+              {" · "}
+              <a
+                href="/tests/e2e/"
+                className={reportLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                End-to-end report
+              </a>
             </p>
           </footer>
         </div>

@@ -19,6 +19,8 @@ test.describe("home", () => {
     ).toBeVisible();
     await expect(page.getByRole("heading", { name: /contact/i })).toBeVisible();
 
-    await expect(page.getByRole("contentinfo")).toContainText(/Built with React/i);
+    await expect(page.getByRole("contentinfo")).toContainText(
+      /100% unit coverage/i,
+    );
   });
 });

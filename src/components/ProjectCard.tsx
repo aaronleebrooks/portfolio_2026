@@ -22,6 +22,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <div className="transition-transform duration-300 ease-out motion-safe:hover:-translate-y-1.5">
       <Card className="h-full transition-shadow hover:shadow-lg hover:shadow-primary/10">
         <CardHeader>
+          <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+            {project.status}
+          </p>
           <div className="flex items-start justify-between gap-3">
             <CardTitle className="text-lg">{project.name}</CardTitle>
             {href ? (

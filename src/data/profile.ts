@@ -9,8 +9,8 @@ export const profile = {
   linkedin: "https://linkedin.com/in/aaronleebrooks",
   letterboxd: "https://letterboxd.com/aaron_brooks/",
   about: [
-    "I'm a full-stack software engineer with 8+ years building customer-facing K-12 EdTech serving 1M+ users at 99%+ uptime, specializing in React, TypeScript, and Redux. I've progressed from bug-fixing to leading product-agnostic micro front-end architecture, AI-powered assessment tooling, and QTI-based test and rubric platforms.",
-    "I'm an experienced tech lead who mentors engineers, drives technical strategy, and ships accessible, well-tested software across cross-functional teams. I'm looking for a quality-focused team where craft, mentorship, and shipping thoughtfully matter as much as velocity.",
+    "I write software that kids take tests on. The résumé version is eight years, 1M+ users, 99%+ uptime. The part I'd rather talk about is the on-screen protractor: a student taking a geometry test needs a protractor, so I built one, along with the ruler, the compass, the focus reader, and the text-to-speech. Every student gets them; teachers switch them on as needed.",
+    "These days I lead front-end work at PowerSchool. Micro front-ends, a QTI-standardized authoring stack, and the metering system that keeps our AI features from costing more than they earn. I've covered as acting lead for stretches of weeks and months at a time, and I like that part more than I expected to. I'm looking for a place where people care how a thing gets built, not just when it ships.",
   ],
 } as const;
 

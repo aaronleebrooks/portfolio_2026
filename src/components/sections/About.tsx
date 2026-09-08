@@ -12,7 +12,7 @@ export function About() {
       className="scroll-mt-24 py-16 sm:py-24"
     >
       <Reveal>
-        <SectionHeading number="01" title="About" id="about-heading" />
+        <SectionHeading title="About" id="about-heading" />
         <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
           {profile.about.map((paragraph) => (
             <p key={paragraph.slice(0, 32)}>{paragraph}</p>

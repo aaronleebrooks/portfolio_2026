@@ -18,9 +18,9 @@ export const experience: ExperienceItem[] = [
     start: "Jul 2021",
     end: "Present",
     highlights: [
-      "Overhauled the student test-taking app, migrating 32 bespoke components to PowerSchool's shared React component library — eliminating ad-hoc CSS duplication and improving accessibility with built-in WCAG-compliant components.",
-      "Replaced a legacy jQuery question-creation page with a React SPA (Redux Toolkit, Lambda, DynamoDB, CKEditor 5), unifying 15 question types into a single QTI-standardized editor with AI generation scaling from 1 to 10 questions per minute. Serves 30M+ students across 5,000+ institutions.",
-      "Built product-agnostic micro front-ends consumed by Performance Matters and other PowerSchool applications — including a QTI assessment creator and rubric suite (creator, viewer, access-aware catalog) with district-level access control.",
+      "Overhauled the student testing app, migrating 32 bespoke components to PowerSchool's shared React component library which eliminated ad-hoc CSS duplication and improved accessibility with built-in WCAG-compliant components.",
+      "Replaced a legacy jQuery question-creation page with a React SPA (Redux Toolkit, Lambda, DynamoDB), updating 15 question interactions into a modern QTI-standardized editor with AI generation. Serves 30M+ students across 5,000+ institutions.",
+      "Built product-agnostic micro front-ends consumed by Performance Matters and other PowerSchool applications including a QTI assessment creator and rubric suite (creator, viewer, access-aware catalog).",
       "Designed \"allotments,\" an AI credit entitlement system for per-org metered billing across a platform serving 1M+ users — generating $1M+ in revenue and capping exposure to uncapped OpenAI costs averaging $20K+/month per org.",
       "Recurring acting team lead, stepping in to cover absences for weeks or months at a time. Ran stand-ups, retros, planning, and code reviews, keeping momentum steady while the team stayed focused on delivery.",
       "Front-end tech lead and epic owner for the AI question generator and assessment creator. Led a team of 3 through a migration to PowerSchool's Neon design library (60+ components). All projects delivered on time and above quality bar.",

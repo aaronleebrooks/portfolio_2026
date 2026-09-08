@@ -1,13 +1,9 @@
-import { useState } from "react";
-
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { profile } from "@/data/profile";
 
 export function Contact() {
-  const [emailRevealed, setEmailRevealed] = useState(false);
-
   return (
     <section
       id="contact"
@@ -15,27 +11,17 @@ export function Contact() {
       className="scroll-mt-24 py-16 sm:py-24"
     >
       <Reveal>
-        <SectionHeading number="04" title="Contact" id="contact-heading" />
+        <SectionHeading title="Contact" id="contact-heading" />
         <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
-          Whether you&apos;re hiring, collaborating, or just want to talk shop
-          about accessible React and AI-powered EdTech — I&apos;d love to hear
-          from you.
+          I&apos;m open to new roles, and I like talking shop: accessible React,
+          assessment standards, or why your AI feature costs more than it earns.
+          Email is the fastest way to reach me.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          {emailRevealed ? (
-            <Button
-              size="lg"
-              render={
-                <a href={`mailto:${profile.email}`}>
-                  {profile.email}
-                </a>
-              }
-            />
-          ) : (
-            <Button size="lg" onClick={() => setEmailRevealed(true)}>
-              Reveal email
-            </Button>
-          )}
+          <Button
+            size="lg"
+            render={<a href={`mailto:${profile.email}`}>{profile.email}</a>}
+          />
           <Button
             variant="outline"
             size="lg"

@@ -11,7 +11,7 @@ export function Projects() {
       className="scroll-mt-24 py-16 sm:py-24"
     >
       <Reveal>
-        <SectionHeading number="03" title="Projects" id="projects-heading" />
+        <SectionHeading title="Projects" id="projects-heading" />
         <ul className="grid gap-6">
           {projects.map((project, index) => (
             <li key={project.id}>

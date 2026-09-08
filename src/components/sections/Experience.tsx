@@ -11,7 +11,7 @@ export function Experience() {
       className="scroll-mt-24 py-16 sm:py-24"
     >
       <Reveal>
-        <SectionHeading number="02" title="Experience" id="experience-heading" />
+        <SectionHeading title="Experience" id="experience-heading" />
         <ol className="space-y-10">
           {experience.map((job) => (
             <li key={job.id} className="group relative">

@@ -7,6 +7,7 @@ import type { Project } from "@/data/projects";
 const baseProject: Project = {
   id: "demo",
   name: "Demo Project",
+  status: "Acme · Shipped 2024",
   description: "A sample project description.",
   tech: ["React", "TypeScript"],
 };
@@ -16,6 +17,7 @@ describe("ProjectCard", () => {
     render(<ProjectCard project={baseProject} />);
 
     expect(screen.getByText("Demo Project")).toBeInTheDocument();
+    expect(screen.getByText("Acme · Shipped 2024")).toBeInTheDocument();
     expect(
       screen.getByText("A sample project description."),
     ).toBeInTheDocument();

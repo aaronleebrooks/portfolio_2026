@@ -22,6 +22,7 @@ describe("data modules", () => {
     for (const project of projects) {
       expect(project.id).toBeTruthy();
       expect(project.name).toBeTruthy();
+      expect(project.status).toBeTruthy();
       expect(project.description).toBeTruthy();
       expect(project.tech.length).toBeGreaterThan(0);
     }

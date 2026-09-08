@@ -33,7 +33,9 @@ describe("App", () => {
     ).toBeInTheDocument();
 
     expect(
-      within(screen.getByRole("contentinfo")).getByText(/built with react/i),
+      within(screen.getByRole("contentinfo")).getByRole("link", {
+        name: /coverage report/i,
+      }),
     ).toBeInTheDocument();
   });
 });
