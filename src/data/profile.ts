@@ -19,8 +19,8 @@ export const profile = {
     note: "Promoted 5× in 3 years.",
   },
   about: [
-    "I write software that kids take tests on. The résumé version is eight years, 1M+ users, 99%+ uptime. The part I'd rather talk about is the on-screen protractor: a student taking a geometry test needs a protractor, so I built one, along with the ruler, the compass, the focus reader, and the text-to-speech. Every student gets them; teachers switch them on as needed.",
-    "These days I lead front-end work at PowerSchool. Micro front-ends, a QTI-standardized authoring stack, and the metering system that keeps our AI features from costing more than they earn. I've covered as acting lead for stretches of weeks and months at a time, and I like that part more than I expected to. I'm looking for a place where people care how a thing gets built, not just when it ships.",
+    "I'm a full-stack engineer with eight years at PowerSchool, working on the assessment software K–12 students take tests on. I lead front-end work across a QTI-standardized authoring stack, a set of micro front-ends that other PowerSchool products consume, and the entitlement system that meters our AI features.",
+    "Accessibility drives a lot of that work. Students don't get to choose this software, so the burden is on us to make it usable. I built the text-to-speech, the focus reader, and the on-screen ruler, protractor, and compass that students use during tests. I've also covered as acting team lead for months at a stretch, and I'm looking for a role where leading is part of the job rather than something I fill in.",
   ],
 } as const;
 
