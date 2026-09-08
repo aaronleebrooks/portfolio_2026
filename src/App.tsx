@@ -1,5 +1,5 @@
-import { MobileNav } from "@/components/layout/MobileNav";
-import { Sidebar } from "@/components/layout/Sidebar";
+import { Masthead } from "@/components/layout/Masthead";
+import { TopBar } from "@/components/layout/TopBar";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
@@ -17,51 +17,49 @@ export default function App() {
     <>
       <a
         href="#main"
-        className="sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:m-0 focus:inline-flex focus:h-auto focus:w-auto focus:overflow-visible focus:whitespace-normal focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:[clip:auto]"
+        className="sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:m-0 focus:inline-flex focus:h-auto focus:w-auto focus:overflow-visible focus:whitespace-normal focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:[clip:auto]"
       >
         Skip to content
       </a>
 
-      <MobileNav activeId={activeId} />
+      <TopBar activeId={activeId} />
 
-      <div className="mx-auto grid max-w-6xl gap-4 px-6 lg:grid-cols-[minmax(280px,340px)_minmax(0,1fr)] lg:gap-16 lg:px-12">
-        <Sidebar activeId={activeId} />
+      <div className="mx-auto max-w-3xl px-6">
+        <Masthead />
 
-        <div className="min-w-0 pb-24 lg:py-24">
-          <main id="main">
-            <About />
-            <Experience />
-            <Projects />
-            <Contact />
-          </main>
+        <main id="main">
+          <About />
+          <Experience />
+          <Projects />
+          <Contact />
+        </main>
 
-          <footer
-            role="contentinfo"
-            className="mt-8 border-t border-border pt-8 text-sm text-muted-foreground"
-          >
-            <p>
-              I test this site the way I test production code: 100% unit
-              coverage and a Playwright end-to-end suite, both public.{" "}
-              <a
-                href="/tests/coverage/"
-                className={reportLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Coverage report
-              </a>
-              {" · "}
-              <a
-                href="/tests/e2e/"
-                className={reportLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                End-to-end report
-              </a>
-            </p>
-          </footer>
-        </div>
+        <footer
+          role="contentinfo"
+          className="mt-8 border-t border-border pb-20 pt-8 text-sm text-muted-foreground"
+        >
+          <p className="max-w-[68ch]">
+            I test this site the way I test production code: 100% unit coverage
+            and a Playwright end-to-end suite, both public.{" "}
+            <a
+              href="/tests/coverage/"
+              className={reportLinkClass}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Coverage report
+            </a>
+            {" · "}
+            <a
+              href="/tests/e2e/"
+              className={reportLinkClass}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              End-to-end report
+            </a>
+          </p>
+        </footer>
       </div>
     </>
   );

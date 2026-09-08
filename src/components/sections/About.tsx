@@ -13,7 +13,7 @@ export function About() {
     >
       <Reveal>
         <SectionHeading title="About" id="about-heading" />
-        <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
+        <div className="max-w-[68ch] space-y-4 text-base leading-relaxed text-muted-foreground">
           {profile.about.map((paragraph) => (
             <p key={paragraph.slice(0, 32)}>{paragraph}</p>
           ))}

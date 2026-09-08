@@ -17,7 +17,7 @@ This is my interactive portfolio — a single-page React app for my work as a fu
 ## Structure
 
 - `src/data/` — profile, skills, experience, projects (typed content)
-- `src/components/layout/` — sticky sidebar + mobile sheet nav
+- `src/components/layout/` — sticky top bar + masthead
 - `src/components/sections/` — About, Experience, Projects, Contact
 - `src/components/ui/` — shadcn primitives
 - `e2e/` — Playwright specs

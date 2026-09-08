@@ -32,14 +32,4 @@ test.describe("accessibility", () => {
     await preparePage(page);
     await expectNoSeriousViolations(page);
   });
-
-  test("has no serious or critical axe violations with the mobile menu open", async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
-    await preparePage(page);
-    await page.getByRole("button", { name: "Open menu" }).click();
-    await expect(page.getByRole("dialog")).toBeVisible();
-    await expectNoSeriousViolations(page);
-  });
 });
