@@ -31,6 +31,23 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "accessibility-tools",
+    name: "Student Test-Taking Tools",
+    // TODO(aaron): pin this to the actual ship year if you'd rather not show a range.
+    status: "PowerSchool · Shipped 2018–2021",
+    description:
+      "Read-aloud, a focus reader that isolates the line a student is on, and the on-screen geometry set: ruler, protractor, and compass. They ship to every student in the test app, and teachers turn on what each student is entitled to use.",
+    images: [
+      {
+        src: "/images/accessibility/test-tools.png",
+        alt: "A student test screen with a reading passage, a highlight-the-sentence question, and a floating read-aloud toolbar with play, pause and stop controls.",
+        width: 634,
+        height: 329,
+      },
+    ],
+    tech: ["React", "jQuery", "WCAG", "Text-to-speech"],
+  },
+  {
     id: "ai-item-generator",
     name: "Question Creator",
     status: "PowerSchool · Shipped 2023",
@@ -82,7 +99,7 @@ export const projects: Project[] = [
   },
   {
     id: "picross-quest",
-    name: "Picross Quest",
+    name: "Nonagram Goblin",
     status: "Side project · Playable 2026",
     description:
       "A nonogram game that thinks it is a dungeon crawl. Each room is a logic puzzle; solving it is how you get through the door. Built in Godot 4 and exported to WebAssembly, so it runs in the browser with nothing to install.",
@@ -92,7 +109,7 @@ export const projects: Project[] = [
         width: 360,
         height: 800,
         pixelated: true,
-        alt: "The Village overworld screen, a grid of sixteen locked puzzle tiles above a pixel-art map.",
+        alt: "Nonagram Goblin's Village overworld screen, a grid of sixteen locked puzzle tiles above a pixel-art map.",
       },
       {
         src: "/images/picross/festival.png",
