@@ -10,6 +10,12 @@ describe("data modules", () => {
     expect(profile.name).toBe("Aaron Brooks");
     expect(profile.email).toContain("@");
     expect(profile.about.length).toBeGreaterThan(0);
+    expect(profile.tenure.org).toBeTruthy();
+    expect(profile.tenure.rows.length).toBeGreaterThan(0);
+    for (const row of profile.tenure.rows) {
+      expect(row.period).toBeTruthy();
+      expect(row.role).toBeTruthy();
+    }
   });
 
   it("exports nav items aligned with section ids", () => {

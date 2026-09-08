@@ -14,6 +14,13 @@ describe("Sidebar", () => {
     expect(screen.getByText(profile.title)).toBeInTheDocument();
     expect(screen.getByText(profile.tagline)).toBeInTheDocument();
 
+    expect(screen.getByText(profile.tenure.org)).toBeInTheDocument();
+    expect(screen.getByText(profile.tenure.note)).toBeInTheDocument();
+    for (const row of profile.tenure.rows) {
+      expect(screen.getByText(row.period)).toBeInTheDocument();
+      expect(screen.getByText(row.role)).toBeInTheDocument();
+    }
+
     const nav = screen.getByRole("navigation", { name: "Primary" });
     expect(within(nav).getByRole("link", { name: "About" })).toHaveAttribute(
       "aria-current",
