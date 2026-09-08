@@ -5,6 +5,13 @@ export type Project = {
   status: string;
   description: string;
   tech: string[];
+  /** Optional screenshots. Sized for the card strip; pixel art, so no smoothing. */
+  images?: { src: string; alt: string }[];
+  /**
+   * Optional third-party or vendor page that corroborates this work, for
+   * claims a reader would otherwise have to take on faith.
+   */
+  evidence?: { label: string; url: string };
   /** Optional public live demo URL. */
   liveUrl?: string;
   /** Optional public repository URL. */
@@ -26,6 +33,10 @@ export const projects: Project[] = [
     status: "PowerSchool · Shipped 2023",
     description:
       "Fifteen question types had fifteen ways to be authored, all of them living in a jQuery page nobody wanted to touch. I replaced it with a single QTI-standardized React editor, then wired in an OpenAI generator that moved teachers from roughly one question a minute to ten. It is the authoring surface for 30M+ students across 5,000+ institutions.",
+    evidence: {
+      label: "PowerSchool's page for this feature",
+      url: "https://www.powerschool.com/solutions/powerschool-ai/powerbuddy/powerbuddy-for-assessment/",
+    },
     tech: ["React", "TypeScript", "OpenAI API", "QTI", "Redux Toolkit", "CKEditor 5"],
   },
   {
@@ -50,6 +61,20 @@ export const projects: Project[] = [
     status: "Side project · Playable 2026",
     description:
       "A nonogram game that thinks it is a dungeon crawl. Each room is a logic puzzle; solving it is how you get through the door. Built in Godot 4 and exported to WebAssembly, so it runs in the browser with nothing to install.",
+    images: [
+      {
+        src: "/images/picross/village.png",
+        alt: "The Village overworld screen, a grid of sixteen locked puzzle tiles above a pixel-art map.",
+      },
+      {
+        src: "/images/picross/festival.png",
+        alt: "A partly solved nonogram grid over a festival scene, with filled cells forming a shape.",
+      },
+      {
+        src: "/images/picross/grove.png",
+        alt: "A nonogram in a forest grove, with a dark cross-shaped picture emerging in the grid.",
+      },
+    ],
     tech: ["Godot 4", "GDScript", "WebAssembly"],
     liveUrl: "https://a-a-ron.party/games/picross-quest/",
   },

@@ -45,6 +45,38 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {project.images?.length ? (
+            <ul
+              className="mb-5 flex gap-3"
+              aria-label={`${project.name} screenshots`}
+            >
+              {project.images.map((image) => (
+                <li key={image.src} className="min-w-0 flex-1 sm:max-w-36">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    width={360}
+                    height={800}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full border border-border [image-rendering:pixelated]"
+                  />
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          {project.evidence ? (
+            <p className="mb-4 text-sm">
+              <a
+                href={project.evidence.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground underline underline-offset-4 transition-colors hover:text-primary"
+              >
+                {project.evidence.label}
+              </a>
+            </p>
+          ) : null}
           <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
             {project.tech.map((item) => (
               <li key={item}>
