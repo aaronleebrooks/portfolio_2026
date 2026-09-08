@@ -5,8 +5,19 @@ export type Project = {
   status: string;
   description: string;
   tech: string[];
-  /** Optional screenshots. Sized for the card strip; pixel art, so no smoothing. */
-  images?: { src: string; alt: string }[];
+  /**
+   * Optional screenshots. Intrinsic width/height are required so the card can
+   * reserve space (no layout shift) and pick a layout: portrait sets sit in a
+   * narrow strip, landscape ones stack full width.
+   */
+  images?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    /** Pixel art: keep hard edges instead of smoothing. */
+    pixelated?: boolean;
+  }[];
   /**
    * Optional third-party or vendor page that corroborates this work, for
    * claims a reader would otherwise have to take on faith.
@@ -25,6 +36,20 @@ export const projects: Project[] = [
     status: "PowerSchool · Shipped 2023",
     description:
       "Fifteen question types had fifteen ways to be authored, all of them living in a jQuery page nobody wanted to touch. I replaced it with a single QTI-standardized React editor, then wired in an OpenAI generator that moved teachers from roughly one question a minute to ten. It is the authoring surface for 30M+ students across 5,000+ institutions.",
+    images: [
+      {
+        src: "/images/question-creator/qti-editor.png",
+        alt: "The item editor: a rich-text toolbar over a multiple-choice block, beside an Interactions panel listing QTI types such as Gap Match, Hot Spot, Hot Text and Inline Choice.",
+        width: 1177,
+        height: 495,
+      },
+      {
+        src: "/images/question-creator/ai-generator.png",
+        alt: "The AI generator: a standard picker and a prompt describing the item needed, beside three generated multiple-choice questions with correct answers marked.",
+        width: 633,
+        height: 370,
+      },
+    ],
     evidence: {
       label: "PowerSchool's page for this feature",
       url: "https://www.powerschool.com/solutions/powerschool-ai/powerbuddy/powerbuddy-for-assessment/",
@@ -64,14 +89,23 @@ export const projects: Project[] = [
     images: [
       {
         src: "/images/picross/village.png",
+        width: 360,
+        height: 800,
+        pixelated: true,
         alt: "The Village overworld screen, a grid of sixteen locked puzzle tiles above a pixel-art map.",
       },
       {
         src: "/images/picross/festival.png",
+        width: 360,
+        height: 800,
+        pixelated: true,
         alt: "A partly solved nonogram grid over a festival scene, with filled cells forming a shape.",
       },
       {
         src: "/images/picross/grove.png",
+        width: 360,
+        height: 800,
+        pixelated: true,
         alt: "A nonogram in a forest grove, with a dark cross-shaped picture emerging in the grid.",
       },
     ],

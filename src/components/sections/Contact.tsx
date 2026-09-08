@@ -8,7 +8,7 @@ export function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="scroll-mt-24 py-16 sm:py-24"
+      className="scroll-mt-24 py-10 sm:py-14"
     >
       <Reveal>
         <SectionHeading title="Contact" id="contact-heading" />

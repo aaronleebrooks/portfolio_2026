@@ -9,12 +9,18 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { Project } from "@/data/projects";
+import { cn } from "@/lib/utils";
 
 type ProjectCardProps = {
   project: Project;
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const images = project.images ?? [];
+  // Portrait sets (phone captures) sit side by side; landscape UI shots
+  // stack full width, where they are actually legible.
+  const portraitSet =
+    images.length > 0 && images.every((image) => image.height > image.width);
   const href = project.liveUrl ?? project.repoUrl;
   const linkLabel = project.liveUrl ? "Live demo" : "Repository";
 
@@ -45,21 +51,30 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {project.images?.length ? (
+          {images.length ? (
             <ul
-              className="mb-5 flex gap-3"
+              className={cn("mb-5 flex gap-3", !portraitSet && "flex-col")}
               aria-label={`${project.name} screenshots`}
             >
-              {project.images.map((image) => (
-                <li key={image.src} className="min-w-0 flex-1 sm:max-w-36">
+              {images.map((image) => (
+                <li
+                  key={image.src}
+                  className={cn(
+                    "min-w-0",
+                    portraitSet && "flex-1 sm:max-w-36",
+                  )}
+                >
                   <img
                     src={image.src}
                     alt={image.alt}
-                    width={360}
-                    height={800}
+                    width={image.width}
+                    height={image.height}
                     loading="lazy"
                     decoding="async"
-                    className="w-full border border-border [image-rendering:pixelated]"
+                    className={cn(
+                      "h-auto w-full border border-border",
+                      image.pixelated && "[image-rendering:pixelated]",
+                    )}
                   />
                 </li>
               ))}

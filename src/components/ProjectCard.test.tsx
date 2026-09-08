@@ -25,12 +25,20 @@ describe("ProjectCard", () => {
     expect(screen.getByText("React")).toBeInTheDocument();
   });
 
-  it("renders a screenshot strip when images are set", () => {
+  it("renders a portrait screenshot strip without smoothing", () => {
     render(
       <ProjectCard
         project={{
           ...baseProject,
-          images: [{ src: "/shot.png", alt: "A screenshot of the demo" }],
+          images: [
+            {
+              src: "/tall.png",
+              alt: "A tall screenshot",
+              width: 360,
+              height: 800,
+              pixelated: true,
+            },
+          ],
         }}
       />,
     );
@@ -38,9 +46,28 @@ describe("ProjectCard", () => {
     expect(
       screen.getByRole("list", { name: "Demo Project screenshots" }),
     ).toBeInTheDocument();
-    expect(
-      screen.getByRole("img", { name: "A screenshot of the demo" }),
-    ).toHaveAttribute("src", "/shot.png");
+    const img = screen.getByRole("img", { name: "A tall screenshot" });
+    expect(img).toHaveAttribute("src", "/tall.png");
+    expect(img).toHaveAttribute("width", "360");
+    expect(img).toHaveAttribute("height", "800");
+    expect(img.className).toContain("[image-rendering:pixelated]");
+  });
+
+  it("stacks landscape screenshots and leaves them smoothed", () => {
+    render(
+      <ProjectCard
+        project={{
+          ...baseProject,
+          images: [
+            { src: "/wide.png", alt: "A wide screenshot", width: 1200, height: 500 },
+          ],
+        }}
+      />,
+    );
+
+    const img = screen.getByRole("img", { name: "A wide screenshot" });
+    expect(img).toHaveAttribute("width", "1200");
+    expect(img.className).not.toContain("[image-rendering:pixelated]");
   });
 
   it("omits the screenshot strip when there are no images", () => {

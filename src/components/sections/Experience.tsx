@@ -8,7 +8,7 @@ export function Experience() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="scroll-mt-24 py-16 sm:py-24"
+      className="scroll-mt-24 py-10 sm:py-14"
     >
       <Reveal>
         <SectionHeading title="Experience" id="experience-heading" />
