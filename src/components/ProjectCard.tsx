@@ -26,7 +26,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {project.status}
           </p>
           <div className="flex items-start justify-between gap-3">
-            <CardTitle className="text-lg">{project.name}</CardTitle>
+            <CardTitle className="font-heading text-xl">{project.name}</CardTitle>
             {href ? (
               <a
                 href={href}

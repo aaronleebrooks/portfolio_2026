@@ -10,7 +10,7 @@ export function Sidebar({ activeId }: SidebarProps) {
   return (
     <header className="flex h-full flex-col justify-between py-12 lg:sticky lg:top-0 lg:max-h-screen lg:py-24">
       <div>
-        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+        <h1 className="font-heading text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
           <a href="#about" className="hover:text-primary transition-colors">
             {profile.name}
           </a>

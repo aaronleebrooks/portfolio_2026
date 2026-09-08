@@ -23,7 +23,7 @@ export function MobileNav({ activeId }: MobileNavProps) {
 
   return (
     <div className="sticky top-0 z-40 flex items-center justify-between border-b border-border/60 bg-background/80 px-4 py-3 backdrop-blur-md lg:hidden">
-      <a href="#about" className="font-semibold tracking-tight text-foreground">
+      <a href="#about" className="font-heading text-lg font-semibold tracking-tight text-foreground">
         {profile.name}
       </a>
 

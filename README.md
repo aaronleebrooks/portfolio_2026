@@ -11,7 +11,7 @@ This is my interactive portfolio — a single-page React app for my work as a fu
 - Vite + React 19 + TypeScript
 - Tailwind CSS v4 + [shadcn/ui](https://ui.shadcn.com)
 - CSS + Intersection Observer for scroll reveals / card hover
-- Inter + JetBrains Mono (latin-only, self-hosted via Fontsource)
+- Fraunces (headings) + Inter (body) + JetBrains Mono (labels) — latin-only, self-hosted via Fontsource
 - Deployed to GitHub Pages (`a-a-ron.party`)
 
 ## Structure

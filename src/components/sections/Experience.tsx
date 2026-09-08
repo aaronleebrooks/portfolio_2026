@@ -22,7 +22,7 @@ export function Experience() {
                   <time dateTime={job.end}>{job.end}</time>
                 </p>
                 <div>
-                  <h3 className="text-lg font-semibold tracking-tight text-foreground">
+                  <h3 className="font-heading text-xl font-semibold tracking-tight text-foreground">
                     {job.role}
                   </h3>
                   <p className="text-sm text-primary">
