@@ -33,7 +33,9 @@ export function Masthead() {
             </div>
           ))}
         </dl>
-        <p className="mt-3 text-sm text-primary">{profile.tenure.note}</p>
+        <p className="mt-3 text-sm font-medium text-foreground">
+          {profile.tenure.note}
+        </p>
       </div>
 
       <SocialLinks className="-ml-2 mt-10" />

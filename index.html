@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
@@ -9,6 +9,15 @@
       content="Aaron Brooks — full stack software engineer. I build the test-taking software 30 million students can't opt out of."
     />
     <title>Aaron Brooks — Full Stack Software Engineer</title>
+    <script>
+      // Restore a remembered dark choice before first paint. Paper is the
+      // default, so there is nothing to do for everyone else.
+      try {
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

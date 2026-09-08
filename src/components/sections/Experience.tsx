@@ -25,14 +25,14 @@ export function Experience() {
                   <h3 className="font-heading text-xl font-semibold tracking-tight text-foreground">
                     {job.role}
                   </h3>
-                  <p className="text-sm text-primary">
+                  <p className="text-sm font-medium text-foreground">
                     {job.company}
                     <span className="text-muted-foreground"> · {job.location}</span>
                   </p>
                   <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
                     {job.highlights.map((highlight) => (
                       <li key={highlight.slice(0, 40)} className="flex gap-2">
-                        <span aria-hidden="true" className="mt-2 size-1 shrink-0 rounded-full bg-primary" />
+                        <span aria-hidden="true" className="mt-2 size-1 shrink-0 rounded-full bg-muted-foreground/60" />
                         <span>{highlight}</span>
                       </li>
                     ))}

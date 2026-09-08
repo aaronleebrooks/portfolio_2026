@@ -22,7 +22,7 @@ export function About() {
         <div className="mt-10 space-y-6">
           {skills.map((group) => (
             <div key={group.category}>
-              <h3 className="mb-3 font-mono text-xs uppercase tracking-widest text-primary">
+              <h3 className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 {group.category}
               </h3>
               <ul className="flex flex-wrap gap-2" aria-label={group.category}>

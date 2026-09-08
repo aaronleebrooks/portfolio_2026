@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { navItems, profile, type NavItemId } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
@@ -15,7 +16,8 @@ export function TopBar({ activeId }: TopBarProps) {
         >
           {profile.name}
         </a>
-        <nav aria-label="Primary">
+        <div className="flex items-center gap-3 sm:gap-5">
+          <nav aria-label="Primary">
           <ul className="flex items-center gap-4 sm:gap-6">
             {navItems.map((item) => {
               const isActive = activeId === item.id;
@@ -37,7 +39,9 @@ export function TopBar({ activeId }: TopBarProps) {
               );
             })}
           </ul>
-        </nav>
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
     </div>
   );
