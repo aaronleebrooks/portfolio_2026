@@ -20,14 +20,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "ai-allotments",
-    name: "Allotments",
-    status: "PowerSchool · Shipped 2024",
-    description:
-      "We were shipping AI features with no meter on them. A single district could run $20K+/month of OpenAI spend with nothing in the way. We designed allotments: per-org AI credits, metered and enforced at the API. It capped the exposure and turned the AI features into $1M+ of tracked revenue. Every piece of AI content on the platform now bills through it.",
-    tech: ["Node", "AWS Lambda", "DynamoDB", "REST APIs"],
-  },
-  {
     id: "ai-item-generator",
     name: "Question Creator",
     status: "PowerSchool · Shipped 2023",
@@ -38,6 +30,14 @@ export const projects: Project[] = [
       url: "https://www.powerschool.com/solutions/powerschool-ai/powerbuddy/powerbuddy-for-assessment/",
     },
     tech: ["React", "TypeScript", "OpenAI API", "QTI", "Redux Toolkit", "CKEditor 5"],
+  },
+  {
+    id: "ai-allotments",
+    name: "Allotments",
+    status: "PowerSchool · Shipped 2024",
+    description:
+      "We were shipping AI features with no meter on them. A single district could run $20K+/month of OpenAI spend with nothing in the way. We designed allotments: per-org AI credits, metered and enforced at the API. It capped the exposure and turned the AI features into $1M+ of tracked revenue. Every piece of AI content on the platform now bills through it.",
+    tech: ["Node", "AWS Lambda", "DynamoDB", "REST APIs", "FusionCharts"],
   },
   {
     id: "assessment-creator",
