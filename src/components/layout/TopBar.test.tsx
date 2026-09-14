@@ -27,7 +27,7 @@ describe("TopBar", () => {
     const nav = screen.getByRole("navigation", { name: "Primary" });
     expect(within(nav).getByRole("link", { name: "Projects" })).toHaveAttribute(
       "aria-current",
-      "location",
+      "true",
     );
     expect(
       within(nav).getByRole("link", { name: "About" }),

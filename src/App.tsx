@@ -27,36 +27,36 @@ export default function App() {
       <div className="mx-auto max-w-3xl px-6">
         <Masthead />
 
-        {/*
-          tabIndex makes the skip link actually move focus. Without it the page
-          scrolls but focus stays behind, so the next Tab returns to the top —
-          the exact failure the skip link exists to prevent. axe cannot see this.
-        */}
-        <main id="main" tabIndex={-1} className="outline-none">
+        <main id="main">
           <About />
           <Experience />
           <Projects />
           <Contact />
         </main>
 
-        {/*
-          The test-coverage argument used to live here, which meant the last
-          thing every visitor read was a footnote about tooling. It is a project
-          now, in Projects, where it reads as evidence instead of an aside.
-        */}
         <footer
           role="contentinfo"
-          className="mt-8 border-t border-border pb-20 pt-8 font-mono text-[11px] uppercase tracking-widest text-muted-foreground"
+          className="mt-8 border-t border-border pb-20 pt-8 text-sm text-muted-foreground"
         >
-          <p>
-            Built by hand in Ithaca, NY.{" "}
+          <p className="max-w-[68ch]">
+            I test this site the way I test production code: 100% unit coverage
+            and a Playwright end-to-end suite, both public.{" "}
             <a
-              href="https://github.com/aaronleebrooks/portfolio_2026"
+              href="/tests/coverage/"
               className={reportLinkClass}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Source
+              Coverage report
+            </a>
+            {" · "}
+            <a
+              href="/tests/e2e/"
+              className={reportLinkClass}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              End-to-end report
             </a>
           </p>
         </footer>

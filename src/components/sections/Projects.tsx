@@ -8,7 +8,7 @@ export function Projects() {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="scroll-mt-20 py-10 sm:py-14"
+      className="scroll-mt-24 py-10 sm:py-14"
     >
       <Reveal>
         <SectionHeading title="Projects" id="projects-heading" />

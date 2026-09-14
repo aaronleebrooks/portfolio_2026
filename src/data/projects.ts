@@ -3,11 +3,6 @@ export type Project = {
   name: string;
   /** Short context tag shown above the title, e.g. "PowerSchool · Shipped 2024". */
   status: string;
-  /**
-   * What Aaron's role on it actually was, appended to the status line. Leadership
-   * belongs on the evidence, not in a bullet six items deep in Experience.
-   */
-  role?: string;
   description: string;
   tech: string[];
   /**
@@ -36,10 +31,26 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "accessibility-tools",
+    name: "Student Test-Taking Tools",
+    // TODO(aaron): pin this to the actual ship year if you'd rather not show a range.
+    status: "PowerSchool · Shipped 2018–2021",
+    description:
+      "Read-aloud, a focus reader that isolates the line a student is on, and the on-screen geometry set: ruler, protractor, and compass. They ship to every student in the test app, and teachers turn on what each student is entitled to use.",
+    images: [
+      {
+        src: "/images/accessibility/test-tools.png",
+        alt: "A student test screen with a reading passage, a highlight-the-sentence question, and a floating read-aloud toolbar with play, pause and stop controls.",
+        width: 634,
+        height: 329,
+      },
+    ],
+    tech: ["React", "jQuery", "WCAG", "Text-to-speech"],
+  },
+  {
     id: "ai-item-generator",
     name: "Question Creator",
     status: "PowerSchool · Shipped 2023",
-    role: "Front-end tech lead · epic owner · team of 3",
     description:
       "Fifteen question types had fifteen ways to be authored, all of them living in a jQuery page nobody wanted to touch. I replaced it with a single QTI-standardized React editor, then wired in an OpenAI generator that moved teachers from roughly one question a minute to ten. It is the authoring surface for 30M+ students across 5,000+ institutions.",
     images: [
@@ -63,19 +74,17 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "OpenAI API", "QTI", "Redux Toolkit", "CKEditor 5"],
   },
   {
-    id: "accessibility-tools",
-    name: "Student Test-Taking Tools",
-    status: "PowerSchool · Shipped 2018–2021",
-    role: "Front-end developer",
+    id: "ai-allotments",
+    name: "Allotments",
+    status: "PowerSchool · Shipped 2024",
     description:
-      "Read-aloud, a focus reader that isolates the line a student is on, and the on-screen geometry set: ruler, protractor, and compass. They ship to every student in the test app, and teachers turn on what each student is entitled to use.",
-    tech: ["React", "jQuery", "WCAG", "Text-to-speech"],
+      "We were shipping AI features with no meter on them. A single district could run $20K+/month of OpenAI spend with nothing in the way. We designed allotments: per-org AI credits, metered and enforced at the API. It capped the exposure and turned the AI features into $1M+ of tracked revenue. Every piece of AI content on the platform now bills through it.",
+    tech: ["Node", "AWS Lambda", "DynamoDB", "REST APIs", "FusionCharts"],
   },
   {
     id: "assessment-creator",
     name: "Assessment Creator",
     status: "PowerSchool · Shipped 2025",
-    role: "Front-end tech lead",
     description:
       "A QTI assessment builder that assembles authored questions into full tests and hands them off to the host grading system. Built as a micro front-end so it could drop into Performance Matters without owning the shell, which is also how the product got its first UX update since 2014.",
     tech: ["React", "Redux Toolkit", "Lambda", "DynamoDB", "QTI", "MFE"],
@@ -87,15 +96,6 @@ export const projects: Project[] = [
     description:
       "Three apps that share a spine: a rubric creator, a viewer, and a catalog that only shows you the rubrics your district is allowed to see. Access control turned out to be the hard part; OpenSearch does the filtering. Serving Performance Matters and Schoology customers.",
     tech: ["React", "Redux Toolkit", "MFE", "OpenSearch", "DynamoDB"],
-  },
-  {
-    id: "ai-allotments",
-    name: "Allotments",
-    status: "PowerSchool · Shipped 2024",
-    role: "Designed the entitlement model",
-    description:
-      "We were shipping AI features with no meter on them. A single district could run $20K+/month of OpenAI spend with nothing in the way. We designed allotments: per-org AI credits, metered and enforced at the API. It capped the exposure and turned the AI features into $1M+ of tracked revenue. Every piece of AI content on the platform now bills through it.",
-    tech: ["Node", "AWS Lambda", "DynamoDB", "REST APIs", "FusionCharts"],
   },
   {
     id: "picross-quest",
@@ -128,19 +128,5 @@ export const projects: Project[] = [
     ],
     tech: ["Godot 4", "GDScript", "WebAssembly"],
     liveUrl: "https://a-a-ron.party/games/picross-quest/",
-  },
-  {
-    id: "this-site",
-    name: "This Site",
-    status: "Side project · Shipped 2026",
-    role: "Everything",
-    description:
-      "Built the way I argue front-end work should be built: React 19 and Tailwind v4 on a design system with one radius token, three type faces with three jobs, and a palette that exists so product screenshots sit on it without glaring. Accessibility is enforced rather than asserted — axe-core runs against WCAG 2.1 AA in CI and fails the build on anything serious, every reveal animation has a reduced-motion path, and every image ships intrinsic dimensions so nothing shifts under you. Held at 100% unit coverage with a Playwright end-to-end suite. Both reports are public.",
-    evidence: {
-      label: "Coverage and end-to-end reports",
-      url: "/tests/coverage/",
-    },
-    tech: ["React 19", "TypeScript", "Tailwind v4", "Vitest", "Playwright", "axe-core"],
-    repoUrl: "https://github.com/aaronleebrooks/portfolio_2026",
   },
 ];

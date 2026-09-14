@@ -1,6 +1,6 @@
 export const profile = {
   name: "Aaron Brooks",
-  title: "Senior Software Engineer",
+  title: "Full Stack Software Engineer",
   tagline:
     "I build the test-taking software 30 million students can't opt out of.",
   location: "Ithaca, NY",
@@ -9,18 +9,6 @@ export const profile = {
   github: "https://github.com/aaronleebrooks",
   linkedin: "https://linkedin.com/in/aaronleebrooks",
   letterboxd: "https://letterboxd.com/aaron_brooks/",
-  /**
-   * The masthead artifact. This is the work itself, not decoration: it is the
-   * only thing on the page that makes the tagline literal rather than
-   * rhetorical, so it sits above everything except the name and the claim.
-   */
-  hero: {
-    src: "/images/accessibility/test-tools.png",
-    alt: "A student test screen with a reading passage, a highlight-the-sentence question, and a floating read-aloud toolbar with play, pause and stop controls.",
-    width: 634,
-    height: 329,
-    caption: "Read-aloud and the focus reader, in the app students sit tests in.",
-  },
   /** Compact career proof shown in the hero, above the nav. */
   tenure: {
     org: "PowerSchool",
@@ -29,12 +17,6 @@ export const profile = {
       { period: "2018 — 2021", role: "Software Engineer I–III" },
     ],
     note: "Promoted 5× in 3 years.",
-    /**
-     * The qualifying fact for the role being sought. It sits in the proof rail
-     * rather than in a bullet six items deep, because a reader who leaves
-     * knowing what was built but not that it was led has missed the point.
-     */
-    lead: "Tech lead on the question generator and assessment creator. Recurring acting team lead.",
   },
   about: [
     "I'm a full-stack engineer with eight years at PowerSchool, working on the assessment software K–12 students take tests on. I lead front-end work across a QTI-standardized authoring stack, a set of micro front-ends that other PowerSchool products consume, and the entitlement system that meters our AI features.",
