@@ -9,8 +9,11 @@ type SocialLinksProps = {
   showLabels?: boolean;
 };
 
+// p-2 around a 20px icon gave 36px targets sitting 4px apart — the worst tap
+// zone on the page, and it holds the résumé link. The padding is the fix; the
+// row still reads as icons.
 const linkClass =
-  "inline-flex items-center gap-2 rounded-md p-2 text-muted-foreground transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
+  "inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-md p-2.5 text-muted-foreground transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
 export function SocialLinks({ className, showLabels = false }: SocialLinksProps) {
   return (

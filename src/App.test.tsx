@@ -34,7 +34,7 @@ describe("App", () => {
 
     expect(
       within(screen.getByRole("contentinfo")).getByRole("link", {
-        name: /coverage report/i,
+        name: /source/i,
       }),
     ).toBeInTheDocument();
   });

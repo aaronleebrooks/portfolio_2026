@@ -99,6 +99,24 @@
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-ring;
   }
+
+  /* The surfaces the browser draws still belong to the palette. Left at their
+     defaults, selection and the scrollbar are the two places a warm paper page
+     reverts to system blue and system gray. */
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 22%, transparent);
+    color: var(--foreground);
+  }
+
+  html {
+    scrollbar-color: color-mix(in oklch, var(--foreground) 28%, transparent)
+      transparent;
+  }
+
+  /* Dates and figures are measurement; they should not reflow column to column. */
+  .font-mono {
+    font-variant-numeric: tabular-nums;
+  }
 }
 
 .reveal {

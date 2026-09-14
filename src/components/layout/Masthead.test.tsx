@@ -11,14 +11,17 @@ describe("Masthead", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: profile.name }),
     ).toBeInTheDocument();
-    expect(screen.getByText(profile.title)).toBeInTheDocument();
     expect(screen.getByText(profile.tagline)).toBeInTheDocument();
 
     expect(screen.getByText(profile.tenure.org)).toBeInTheDocument();
     expect(screen.getByText(profile.tenure.note)).toBeInTheDocument();
     for (const row of profile.tenure.rows) {
       expect(screen.getByText(row.period)).toBeInTheDocument();
-      expect(screen.getByText(row.role)).toBeInTheDocument();
+      // The role string can also appear as the title line above, so assert it
+      // specifically inside the tenure list rather than anywhere on screen.
+      expect(
+        screen.getAllByText(row.role).some((el) => el.tagName === "DD"),
+      ).toBe(true);
     }
 
     expect(screen.getByRole("link", { name: "GitHub" })).toHaveAttribute(

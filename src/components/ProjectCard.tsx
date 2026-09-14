@@ -28,11 +28,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <div className="transition-transform duration-300 ease-out motion-safe:hover:-translate-y-1.5">
       <Card className="h-full transition-shadow hover:shadow-lg hover:shadow-primary/10">
         <CardHeader>
-          <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          <p className="font-mono text-[11px] uppercase tracking-widest tabular-nums text-muted-foreground">
             {project.status}
+            {project.role ? (
+              <>
+                {" · "}
+                <span className="text-foreground">{project.role}</span>
+              </>
+            ) : null}
           </p>
           <div className="flex items-start justify-between gap-3">
-            <CardTitle className="font-heading text-xl">{project.name}</CardTitle>
+            <CardTitle as="h3" className="font-heading text-xl">
+              {project.name}
+            </CardTitle>
             {href ? (
               <a
                 href={href}
@@ -53,7 +61,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <CardContent>
           {images.length ? (
             <ul
-              className={cn("mb-5 flex gap-3", !portraitSet && "flex-col")}
+              className={cn(
+                "mb-5 flex gap-3",
+                portraitSet ? "flex-wrap" : "flex-col",
+              )}
               aria-label={`${project.name} screenshots`}
             >
               {images.map((image) => (
@@ -61,7 +72,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   key={image.src}
                   className={cn(
                     "min-w-0",
-                    portraitSet && "flex-1 sm:max-w-36",
+                    // Portrait phone captures: two up on a phone, three across
+                    // once there is room. The old single row put them at 24% of
+                    // native width, where the puzzle clues stopped resolving.
+                    portraitSet &&
+                      "shrink-0 grow-0 basis-[calc(50%-0.375rem)] sm:basis-52 sm:max-w-52",
                   )}
                 >
                   <img
@@ -72,7 +87,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
                     loading="lazy"
                     decoding="async"
                     className={cn(
-                      "h-auto w-full border border-border",
+                      // Pale application UI on a near-black ground reads as a
+                      // lightbox. A few percent off the top stops it dominating
+                      // without changing anything the screenshot shows.
+                      "h-auto w-full border border-border dark:brightness-[0.93]",
                       image.pixelated && "[image-rendering:pixelated]",
                     )}
                   />
