@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Aaron Brooks portfolio — React + TypeScript + Vite",
+  "description": "Aaron Brooks portfolio \u2014 React + TypeScript + Vite",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -15,7 +15,8 @@
     "test:all": "npm run typecheck && npm run lint:test && npm run test:coverage && npm run test:e2e",
     "lint:test": "eslint \"src/**/*.test.{ts,tsx}\"",
     "update:picross": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/update-picross-quest.ps1",
-    "update:deduction": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/update-deduction-demo.ps1"
+    "update:deduction": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/update-deduction-demo.ps1",
+    "update:deduction-writer": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/update-deduction-demo.ps1 -Name deduction_writer -Source C:/Users/pleas/projects/detective-game/build/writer/web -Message \"Update Deduction writer preview build\""
   },
   "license": "MIT",
   "engines": {

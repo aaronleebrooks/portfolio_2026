@@ -1,20 +1,32 @@
-# Sync the latest Godot web export into the portfolio and push to GitHub Pages.
+# Sync a Godot web export into the portfolio and push to GitHub Pages.
 # Usage (from site/):
 #   npm run update:deduction
 #   npm run update:deduction -- -SkipPush
 #   npm run update:deduction -- -Source "D:\other\build\web"
+#   npm run update:deduction-writer
+#
+# -Name is the folder under public/, and so the path the build is served at.
+# It exists because there is more than one build of the same game: the demo
+# an employer sees, and the writer preview build, which carries a debug HUD
+# and must never land in the demo's slot.
 
 [CmdletBinding()]
 param(
   [string]$Source = "C:\Users\pleas\projects\detective-game\build\web",
+  [string]$Name = "deduction_demo",
   [switch]$SkipPush,
   [string]$Message = "Update Deduction demo web build"
 )
 
 $ErrorActionPreference = "Stop"
 
+if ($Name -notmatch '^[a-z0-9_-]+$') {
+  throw "-Name is a URL path segment: lowercase letters, digits, _ and - only. Got '$Name'."
+}
+
 $RepoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
-$Dest = Join-Path $RepoRoot "public\deduction_demo"
+$Dest = Join-Path $RepoRoot (Join-Path "public" $Name)
+$TrackedPath = "public/$Name"
 
 $Required = @(
   "index.html",
@@ -52,11 +64,11 @@ foreach ($name in $Required) {
 
 Push-Location $RepoRoot
 try {
-  git add -- "public/deduction_demo"
+  git add -- $TrackedPath
 
-  $staged = @(git diff --cached --name-only -- "public/deduction_demo")
+  $staged = @(git diff --cached --name-only -- $TrackedPath)
   if ($staged.Count -eq 0) {
-    Write-Host "No changes in public/deduction_demo - nothing to commit."
+    Write-Host "No changes in $TrackedPath - nothing to commit."
     exit 0
   }
 
@@ -78,8 +90,8 @@ try {
     throw "git push failed (exit $LASTEXITCODE)"
   }
 
-  Write-Host "Pushed. GitHub Pages will redeploy from main."
-  Write-Host "Live URL: https://a-a-ron.party/deduction_demo/"
+  Write-Host "Pushed. GitHub Pages will redeploy from main once CI is green."
+  Write-Host "Live URL: https://a-a-ron.party/$Name/"
 }
 finally {
   Pop-Location
