@@ -44,8 +44,10 @@ if (-not (Test-Path -LiteralPath $Source)) {
   throw "Godot build folder not found: $Source"
 }
 
-foreach ($name in $Required) {
-  $path = Join-Path $Source $name
+# $file, not $name: PowerShell variables are case-insensitive, so a loop over
+# $name silently overwrites the -Name parameter with the last filename.
+foreach ($file in $Required) {
+  $path = Join-Path $Source $file
   if (-not (Test-Path -LiteralPath $path)) {
     throw "Missing required web export file: $path"
   }
@@ -58,8 +60,8 @@ Write-Host "  $Source"
 Write-Host "to:"
 Write-Host "  $Dest"
 
-foreach ($name in $Required) {
-  Copy-Item -LiteralPath (Join-Path $Source $name) -Destination (Join-Path $Dest $name) -Force
+foreach ($file in $Required) {
+  Copy-Item -LiteralPath (Join-Path $Source $file) -Destination (Join-Path $Dest $file) -Force
 }
 
 Push-Location $RepoRoot
