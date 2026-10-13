@@ -44,9 +44,25 @@ if (-not (Test-Path -LiteralPath $Source)) {
   throw "Godot build folder not found: $Source"
 }
 
+# A build with Extensions Support (the game's tweens.gd addon) is dynamically
+# linked: index.wasm is only the loader, the engine is index.side.wasm, and
+# each GDExtension is its own .wasm, named in index.html's GODOT_CONFIG.
+# Leave any of them behind and the page never boots. The export folder also
+# keeps libraries from older debug exports, so copy only the ones listed.
+$Files = [System.Collections.Generic.List[string]]::new([string[]]$Required)
+$html = Get-Content -Raw -LiteralPath (Join-Path $Source "index.html")
+if ($html -match '"gdextensionLibs":\[([^\]]*)\]') {
+  foreach ($lib in [regex]::Matches($Matches[1], '"([^"]+)"')) {
+    $Files.Add($lib.Groups[1].Value)
+  }
+}
+if (Test-Path -LiteralPath (Join-Path $Source "index.side.wasm")) {
+  $Files.Add("index.side.wasm")
+}
+
 # $file, not $name: PowerShell variables are case-insensitive, so a loop over
 # $name silently overwrites the -Name parameter with the last filename.
-foreach ($file in $Required) {
+foreach ($file in $Files) {
   $path = Join-Path $Source $file
   if (-not (Test-Path -LiteralPath $path)) {
     throw "Missing required web export file: $path"
@@ -60,7 +76,7 @@ Write-Host "  $Source"
 Write-Host "to:"
 Write-Host "  $Dest"
 
-foreach ($file in $Required) {
+foreach ($file in $Files) {
   Copy-Item -LiteralPath (Join-Path $Source $file) -Destination (Join-Path $Dest $file) -Force
 }
 
